@@ -1,0 +1,23 @@
+.text-btn {
+  cursor: pointer;
+  font-size: 100%;
+  border: none;
+  font-weight: 500;
+  color: var(--yad2Orange);
+  background: none;
+}
+
+.orange-btn {
+  cursor: pointer;
+  border: none;
+  font-weight: 400;
+  color: #fff;
+  background-color: var(--yad2Orange);
+  font-size: 100%;
+  border-radius: 30px;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.orange-btn:hover {
+  background-color: var(--yad2OrangeDarker);
+}

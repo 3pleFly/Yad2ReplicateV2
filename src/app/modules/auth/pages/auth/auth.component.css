@@ -1,0 +1,85 @@
+:host {
+  background-color: rgb(254, 248, 240);
+  display: block;
+}
+
+.center {
+  margin: 0 auto;
+  width: 93%;
+}
+
+.logo_header img {
+  width: 75px;
+}
+
+.logo_header {
+  padding: 30px;
+  display: flex;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+}
+
+.login_info {
+  margin-right: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.login_info header h2 {
+  font-size: 36px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.login_info header {
+  margin-bottom: 40px;
+}
+
+.login_info ul {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.login_info ul li {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 10px;
+}
+
+.login_info ul li img {
+  width: 70px;
+  height: 70px;
+}
+
+@media only screen and (max-width: 875px) {
+
+  .content {
+    display: block;
+  }
+
+  .content section {
+    display: none;
+  }
+
+  .center {
+    width: unset;
+  }
+
+  .logo_header {
+    display: none;
+  }
+
+
+
+}

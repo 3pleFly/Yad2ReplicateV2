@@ -1,0 +1,12 @@
+.validation_errors {
+  margin: 0;
+  padding: 0;
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 300;
+  color: red;
+}
+
+.validation_errors:empty {
+  display: none;
+}

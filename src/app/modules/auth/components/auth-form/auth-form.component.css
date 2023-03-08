@@ -1,0 +1,144 @@
+:host {
+  display: block;
+  width: 510px;
+  height: 100vh;
+}
+
+.different_strategy {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.different_strategy span {
+  cursor: pointer;
+}
+
+.realtor_login::after {
+  content: "|";
+  margin: 0 15px;
+  color: var(--pastelGray);
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+  margin-top: 25px;
+}
+
+h2 {
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+  margin-top: 25px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 3px 10px 0 rgb(0 0 0 / 10%);
+  border-radius: 4px;
+  padding: 35px 35px 15px;
+}
+
+.label_text {
+  padding-top: 20px;
+  margin-bottom: 5px;
+}
+
+.forgot_password {
+  display: block;
+  text-align: left;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.login_btn {
+  width: 100%;
+  height: 50px;
+  margin-top: 30px;
+}
+
+.options_header {
+  font-size: 14px;
+  font-weight: 400;
+  display: flex;
+  gap: 20px;
+  color: var(--pastelGray);
+  align-items: center;
+}
+
+.options_header::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--pastelGray);
+  display: block;
+}
+.options_header::before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--pastelGray);
+  display: block;
+}
+
+.options {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.auth_icon {
+  border-radius: 30px;
+  border: 1px solid var(--pastelGray);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 0px 10px 10px 10px;
+}
+
+.google_icon {
+  width: 25px;
+  margin: 0 5px;
+}
+
+.apple_icon {
+  width: 20px;
+  margin: 0 5px;
+}
+
+.switch_forms {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.text-btn {
+  cursor: pointer;
+}
+@media only screen and (max-width: 875px) {
+  :host {
+    width: unset;
+  }
+
+  form {
+    height: 100vh;
+  }
+
+  .different_strategy {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .options_header {
+    font-size: 16px;
+  }
+
+  .login_btn {
+    font-size: 20px;
+  }
+}
