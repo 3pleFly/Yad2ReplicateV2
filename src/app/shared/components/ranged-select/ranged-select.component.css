@@ -1,0 +1,14 @@
+:host {
+
+}
+
+.select {
+  width: 75px;
+  height: 40px;
+  border-radius: 2px;
+  border-color: var(--pastelGray);
+}
+
+.select:first-child {
+  border-left: none;
+}

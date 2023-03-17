@@ -1,0 +1,18 @@
+
+
+input {
+  width: var(--input-width);
+  height: var(--input-height);
+  cursor: var(--cursor);
+  margin-top: 5px;
+}
+
+input::placeholder {
+  font-weight: var(--placeholder-font-weight); ;
+}
+
+
+label {
+  font-size: var(--label-font-size);
+  cursor: var(--cursor);
+}

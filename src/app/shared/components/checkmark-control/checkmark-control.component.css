@@ -1,0 +1,62 @@
+.input {
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  border: 1px solid #363636;
+  border-radius: 2px;
+  display: grid;
+  place-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  font-size: 100%;
+}
+
+.input:hover {
+  border-color: var(--yad2Orange);
+}
+
+.input::before {
+  content: "\2713";
+  font-size: 14px;
+  color: #fff;
+  display: none;
+}
+
+.input:checked::before {
+  display: block;
+}
+
+.input:checked {
+  background-color: var(--yad2Orange);
+  border: 1px solid var(--yad2Orange);
+}
+
+.indeterminate-icon::before {
+  content: "-";
+  font-size: 14px;
+  color: #fff;
+  display: block;
+}
+
+.input:indeterminate {
+  background-color: var(--yad2Orange);
+  border: 1px solid var(--yad2Orange);
+}
+
+label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+label span {
+  margin-right: 5px;
+}

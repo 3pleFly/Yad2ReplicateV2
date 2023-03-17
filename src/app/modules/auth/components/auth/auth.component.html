@@ -1,0 +1,40 @@
+<div class="center">
+  <header class="logo_header">
+    <img [src]="logoSvg" alt="" />
+  </header>
+  <main class="content">
+    <app-auth-form></app-auth-form>
+    <section class="login_info">
+      <header>
+        <h2>{{ localAuth.authInfoHeader1 }}</h2>
+        <h2>{{ localAuth.authInfoHeader2 }}</h2>
+      </header>
+      <ul>
+        <li>
+          <span>
+            {{ localAuth.authInfoAlert }}
+          </span>
+          <img [src]="images.alert" />
+        </li>
+        <li>
+          <span>
+            {{ localAuth.authInfoChat }}
+          </span>
+          <img [src]="images.chat" />
+        </li>
+        <li>
+          <span>
+            {{ localAuth.authInfoPublish }}
+          </span>
+          <img [src]="images.publish" />
+        </li>
+        <li>
+          <span>
+            {{ localAuth.authInfoAccount }}
+          </span>
+          <img [src]="images.personal" />
+        </li>
+      </ul>
+    </section>
+  </main>
+</div>

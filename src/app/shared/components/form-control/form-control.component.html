@@ -1,0 +1,27 @@
+<div class="input-container">
+  <ng-container *ngIf="control.statusChanges | async"></ng-container>
+  <input
+    [ngClass]="{
+      common_input: true,
+      'red-border': control.dirty && control.touched && control.invalid
+    }"
+    [type]="type"
+    [placeholder]="placeholder"
+    [formControl]="control"
+    (blur)="onBlur($event)"
+    #input
+  />
+  <ng-template [ngIf]="usePasswordIcon">
+    <img
+      class="password_icon"
+      [src]="passwordIcon"
+      (click)="togglePasswordInput()"
+    />
+  </ng-template>
+</div>
+<app-validation-error
+  [controlErrors]="control.errors"
+  [touched]="control.touched"
+  [dirty]="control.dirty"
+  [validationMessages]="validationMessages"
+></app-validation-error>

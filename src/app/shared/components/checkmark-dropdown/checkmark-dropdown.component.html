@@ -1,0 +1,23 @@
+<div class="title">
+  <div class="content">
+    <app-checkmark-control
+      (marked)="toggleAllCheckmarks()"
+      [checkmark]="title"
+    ></app-checkmark-control>
+    <ng-container *ngIf="countChecked() as count">
+      <span *ngIf="count > 0">נבחרו {{ count }} סוגים</span>
+    </ng-container>
+  </div>
+  <img [src]="local.dropdownArrow" (click)="toggleDropdown($event)" />
+</div>
+<ul *ngIf="dropdown" class="selection">
+  <li
+    *ngFor="let checkmark of checkmarks; let i = index"
+    (click)="markCheckbox(i)"
+  >
+    <app-checkmark-control
+      (marked)="markCheckbox(i)"
+      [checkmark]="checkmark"
+    ></app-checkmark-control>
+  </li>
+</ul>

@@ -1,1 +1,1 @@
-export const Yad2API = "https://localhost:7289/"
+export const Yad2API = "https://localhost:7289"

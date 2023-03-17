@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="header">
+    <h2>
+      <span>{{ local.header_search1 }}</span>
+      <span class="header_switch">{{ local.btn_forsale }}</span>
+      <span>{{ local.header_search2 }}</span>
+    </h2>
+    <div class="notification">
+      <fa-icon [icon]="faBell"></fa-icon>
+      <button>{{ local.btn_getAlertsByEmail }}</button>
+    </div>
+  </div>
+  <ul class="inputs">
+    <li>
+      <app-common-input
+        [placeholder]="local.placeholder_search"
+        [labelName]="local.label_search"
+      ></app-common-input>
+    </li>
+    <li>
+      <app-select-dropdown-checkbox
+        [labelName]="local.label_propertyType"
+        [placeholder]="local.placeholder_propertyType"
+        [checkmarkList]="checkmarkList"
+      ></app-select-dropdown-checkbox>
+    </li>
+    <li class="rooms">
+      <div (click)="toggleRoomsDropdown()">
+        <app-common-input
+          [readonly]="true"
+          [placeholder]="roomsPlaceholder"
+          [labelName]="local.label_rooms"
+        ></app-common-input>
+      </div>
+      <app-ranged-select
+        *ngIf="roomsDropdown"
+        [range]="roomsRange"
+        [max]="12"
+        [increment]="0.5"
+        (newRange)="roomsRangeReducer($event)"
+      ></app-ranged-select>
+    </li>
+    <li>
+      <div class="price_range">
+        <app-common-input
+          [labelName]="local.label_price"
+          [placeholder]="local.placeholder_from"
+        ></app-common-input>
+        <app-common-input
+          [placeholder]="local.placeholder_to"
+        ></app-common-input>
+      </div>
+    </li>
+    <li>
+      <div class="advanced_search_btn btn_container">
+        <fa-icon [icon]="faCirclePlus" class="icon"></fa-icon>
+        <button class="btn">{{ local.btn_advancedSearch }}</button>
+      </div>
+    </li>
+    <li>
+      <div class="btn_container">
+        <fa-icon [icon]="faSearch" class="icon"></fa-icon>
+        <button class="btn">{{ local.btn_search }}</button>
+      </div>
+    </li>
+  </ul>
+</div>

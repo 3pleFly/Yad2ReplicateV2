@@ -7,7 +7,7 @@ import { fromEvent, map, Observable, of, startWith } from 'rxjs';
 export class WindowService {
   constructor() {}
 
-  windowLength$(): Observable<number> {
+  windowWidth$(): Observable<number> {
     return fromEvent(window, 'resize').pipe(
       startWith(this.getWindowWidth()),
       map(() => this.getWindowWidth())

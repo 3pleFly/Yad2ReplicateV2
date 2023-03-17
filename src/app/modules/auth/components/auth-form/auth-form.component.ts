@@ -4,51 +4,55 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { LocalizationService } from '../../services/localization.service';
 import { WindowService } from 'src/app/core/services/window.service';
-import { map, Observable } from 'rxjs';
-import { AuthFormService } from '../../services/authform.service';
+import { map, Observable, of, Subject, tap } from 'rxjs';
+import { AuthFormService } from '../../services/auth-form.service';
 import { ValidationMessages } from 'src/app/shared/models/validation-messages.interface';
 import { FormType } from '../../models/formtype.enum';
 import { AuthService } from '../../services/auth.service';
+import { Yad2Response } from 'src/app/core/models/yad2-response.interface';
+import { ReactiveMessageService } from 'src/app/core/services/error-messages.service';
+import { LocalisationService } from 'src/app/core/services/localisation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-form',
   templateUrl: './auth-form.component.html',
   styleUrls: ['./auth-form.component.css'],
+  providers: [ReactiveMessageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class AuthFormComponent implements OnInit {
   constructor(
-    private localService: LocalizationService,
+    private localService: LocalisationService,
     private windowService: WindowService,
     private authFormService: AuthFormService,
     private authService: AuthService,
-    private cdr: ChangeDetectorRef
+    private responseMessageService: ReactiveMessageService,
+    private router: Router
   ) {}
 
-  local = this.localService.AuthLocal;
+  local = this.localService.auth;
+  images = this.localService.images.auth;
   isMobileWindowWidth$: Observable<boolean> = this.windowService
-    .windowLength$()
+    .windowWidth$()
     .pipe(map((w) => (w > 875 ? true : false)));
 
   usernameValidationMessages: ValidationMessages = {
-    required: this.local.auth.usernameRequired,
-    email: this.local.auth.badUsernameFormat,
+    required: this.local.usernameRequired,
+    email: this.local.badUsernameFormat,
   };
 
   passwordValidationMessages: ValidationMessages = {
-    required: this.local.auth.passwordRequired,
-    pattern: this.local.auth.badPasswordFormat,
-    minlength: this.local.auth.badPasswordLength,
+    required: this.local.passwordRequired,
+    pattern: this.local.badPasswordFormat,
+    minlength: this.local.badPasswordLength,
   };
 
   confirmPasswordValidationMessages: ValidationMessages = {
-    required: this.local.auth.confirmPasswordRequired,
-    passwordMatch: this.local.auth.passwordNotMatching,
+    required: this.local.confirmPasswordRequired,
+    passwordMatch: this.local.passwordNotMatching,
   };
-
-  errorMessage: string = '';
 
   ngOnInit(): void {}
 
@@ -57,7 +61,8 @@ export default class AuthFormComponent implements OnInit {
     this.authFormService.switchFormType();
   }
 
-  authenticate() {
+  authenticate(e: Event) {
+    e.preventDefault();
     if (this.authForm.valid)
       this.formType === FormType.LOGIN ? this.login() : this.register();
     this.authFormService.markAllAsDirtyAndTouched();
@@ -70,12 +75,19 @@ export default class AuthFormComponent implements OnInit {
         password: this.password.value,
       })
       .subscribe({
-        next: () => {},
-        error: (err) => {
-          this.errorMessage = err;
-          this.cdr.markForCheck();
+        next: () => {
+          this.responseMessageService.emitMessage(this.local.loginSuccessful);
+          this
+          setTimeout(() => this.successfulLoginRoute(), 1500);
+        },
+        error: (err: Yad2Response) => {
+          this.responseMessageService.emitError(err.message);
         },
       });
+  }
+
+  successfulLoginRoute() {
+    this.router.navigate(['main']);
   }
 
   register() {
@@ -85,12 +97,24 @@ export default class AuthFormComponent implements OnInit {
         password: this.password.value,
       })
       .subscribe({
-        next: () => {},
-        error: (err) => {
-          this.errorMessage = err;
-          this.cdr.markForCheck();
+        next: () => {
+          this.switchForms();
+          this.responseMessageService.emitMessage(
+            this.local.registerationSuccessful
+          );
+        },
+        error: (err: Yad2Response) => {
+          this.responseMessageService.emitError(err.message);
         },
       });
+  }
+
+  get message$() {
+    return this.responseMessageService.message$;
+  }
+
+  get error$() {
+    return this.responseMessageService.error$;
   }
 
   get authForm() {

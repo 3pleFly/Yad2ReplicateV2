@@ -1,4 +1,4 @@
-.input {
+.common_input {
   outline: none;
   width: 100%;
   height: 50px;
@@ -9,11 +9,11 @@
   font-size: 100%;
 }
 
-.input::placeholder {
+.common_input::placeholder {
   font-weight: 300;
 }
 
-.input:hover {
+.common_input:hover {
   border-color: black;
 }
 

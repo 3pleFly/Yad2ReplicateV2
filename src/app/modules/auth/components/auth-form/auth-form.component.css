@@ -118,6 +118,17 @@ form {
 .text-btn {
   cursor: pointer;
 }
+
+.successful {
+  color: rgb(47, 200, 0);
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.response {
+  text-align: center;
+}
+
 @media only screen and (max-width: 875px) {
   :host {
     width: unset;
@@ -142,3 +153,4 @@ form {
     font-size: 20px;
   }
 }
+

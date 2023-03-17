@@ -1,0 +1,17 @@
+<nav>
+  <section class="right">
+    <img routerLink="/main" [src]="siteLogo" alt="yad 2 logo" />
+    <span>{{ local.navbar_publishNewAd }}</span>
+  </section>
+  <section class="left">
+    <div class="user">
+      <ng-container *ngIf="user$ | async as user">
+        <img [src]="activeUser" alt="my account" />
+        <span>{{ user.userName }}</span>
+      </ng-container>
+    </div>
+    <span class="contact">{{ local.navbar_contact }}</span>
+    <button class="exit_btn" (click)="exit()">{{ local.selectCategory_btn_exit }}</button>
+    <p>route: {{route$ | async}}</p>
+  </section>
+</nav>

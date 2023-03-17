@@ -21,3 +21,13 @@
 .orange-btn:hover {
   background-color: var(--yad2OrangeDarker);
 }
+
+.green-button {
+  cursor: pointer;
+  font-size: 100%;
+  border: none;
+  font-weight: 500;
+  color: #fff;
+  background: var(--yad2Green);
+  border-radius: 30px;
+}

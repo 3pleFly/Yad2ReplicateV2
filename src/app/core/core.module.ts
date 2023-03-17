@@ -1,18 +1,19 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpExceptionsInterceptor } from './services/httpExceptions.interceptor';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpExceptionsInterceptor } from './services/http-exceptions.interceptor';
 import { SessionService } from './services/session.service';
+import { LocalisationService } from './services/localisation.service';
+import { TokenInterceptorProvider } from './helpers/interceptor-providers';
+
 @NgModule({
   declarations: [],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpExceptionsInterceptor,
-      multi: true,
-    },
+    HttpExceptionsInterceptor,
+    TokenInterceptorProvider,
+    LocalisationService,
   ],
-  imports: [],
+  imports: [HttpClientModule],
 })
 export class CoreModule {
   constructor(

@@ -1,0 +1,27 @@
+<label class="label" (click)="toggleDropdown()">
+  <div>{{ labelName }}</div>
+  <input
+    *ngIf="countCheckmarks() as count; else defaultInput"
+    class="input common_input"
+    readonly
+    [placeholder]="count + ' סוגי נכסים'"
+  />
+  <ng-template #defaultInput>
+    <input class="input common_input" readonly [placeholder]="placeholder" />
+  </ng-template>
+
+  <img [src]="iconSrc" (click)="toggleDropdown()" />
+</label>
+<div *ngIf="dropdownActive" class="dropdown">
+  <div class="checkmarks">
+    <ng-container *ngFor="let checkmarkList of checkmarkList">
+      <app-checkmark-dropdown
+        [(title)]="checkmarkList.title"
+        [(checkmarks)]="checkmarkList.checkmarks"
+      ></app-checkmark-dropdown>
+    </ng-container>
+  </div>
+  <button class="confirm text-btn" (click)="confirm()">
+    {{ localSearchbox.btn_select }}
+  </button>
+</div>

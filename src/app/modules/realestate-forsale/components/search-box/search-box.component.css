@@ -1,0 +1,135 @@
+:host {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.container {
+  padding: 20px;
+  max-width: 960px;
+  box-shadow: 0 2px 6px 0 rgb(0 0 0 / 10%);
+}
+
+.inputs {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  padding-top: 30px;
+}
+
+.inputs li {
+  --label-font-size: 14px;
+  --placeholder-font-weight: 400;
+}
+
+.rooms app-common-input {
+  --input-width: 100px;
+  --input-height: 40px;
+  --cursor: pointer;
+  display: block;
+}
+
+.rooms app-ranged-select {
+  display: block;
+  position: absolute;
+}
+
+.price_range {
+  --input-height: 40px;
+  --input-width: 100%;
+  display: flex;
+  align-items: flex-end;
+  width: 200px;
+}
+
+.btn {
+  font-weight: 500;
+  font-size: 14px;
+  border: none;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn_container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 100px;
+  border-radius: 2px;
+  background-color: var(--yad2Orange);
+}
+
+.btn_container:hover {
+  background-color: #d86000;
+}
+
+.icon {
+  color: #fff;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.advanced_search_btn {
+  width: 140px;
+  background-color: #eee;
+}
+
+.advanced_search_btn button {
+  color: #363636;
+  font-weight: 400;
+}
+
+.advanced_search_btn fa-icon {
+  color: #363636;
+}
+
+.advanced_search_btn:hover {
+  background-color: #ccc;
+}
+
+.header_switch {
+  color: var(--yad2Orange);
+  border-bottom: 1px dashed var(--yad2Orange);
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header h2 {
+  font-weight: 500;
+  font-size: 18px;
+  color: #363636;
+}
+
+.notification button {
+  cursor: pointer;
+  border: none;
+  background: #fff;
+  color: #363636;
+  font-size: 14px;
+  color: var(--yad2Orange);
+  font-weight: 500;
+}
+
+.notification {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--yad2Orange);
+  height: 44px;
+  width: 230px;
+}
+
+.notification fa-icon {
+  color: var(--yad2Orange);
+  transform: rotate(20deg);
+}

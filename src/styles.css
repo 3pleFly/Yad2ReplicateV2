@@ -2,6 +2,10 @@
 @import 'assets/styles/variables.css';
 @import 'assets/styles/inputs.css';
 @import 'assets/styles/buttons.css';
+@import 'assets/styles/errors.css';
+@import '~font-awesome/css/font-awesome.css';
+
+
 
 * {
   box-sizing: border-box;

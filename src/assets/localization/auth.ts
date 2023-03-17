@@ -34,6 +34,8 @@ export const auth = {
   badPasswordFormat: 'יש להכניס לפחות תו ומספר אחד',
   badPasswordLength: 'יש להכניס 6 תווים לפחות',
   passwordNotMatching: 'הסיסמאות לא תואמות',
-};
 
-export const logoSvg = 'assets/pictures/main/logo.svg';
+
+  registerationSuccessful: 'נרשמת בהצלחה, ניתן להתחבר',
+  loginSuccessful: 'ברוך הבא'
+};

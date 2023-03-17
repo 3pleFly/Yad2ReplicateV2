@@ -1,0 +1,39 @@
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #fff;
+
+}
+
+nav section {
+  display: flex;
+  align-items: center;
+}
+
+.right img {
+  margin-left: 15px;
+}
+
+.right span {
+  font-size: 18px;
+}
+
+.contact {
+  cursor: pointer;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.user span {
+  color: var(--yad2Orange);
+}
+
+.user img {
+  width: 25px;
+}

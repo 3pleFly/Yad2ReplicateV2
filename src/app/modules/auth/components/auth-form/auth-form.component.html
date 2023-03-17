@@ -1,80 +1,95 @@
 <ng-container
   [ngTemplateOutlet]="(isMobileWindowWidth$ | async) ? altStrategyView : null"
 ></ng-container>
-<form [formGroup]="authForm" #form="ngForm">
+<form
+  [formGroup]="authForm"
+  #form="ngForm"
+  (keydown.enter)="authenticate($event)"
+  (submit)="{}"
+>
   <h2>
-    {{ isLoginType ? local.auth.loginHeader : local.auth.registerHeader }}
+    {{ isLoginType ? local.loginHeader : local.registerHeader }}
   </h2>
   <fieldset>
+    <ng-container *ngIf="error$ | async as error; else messageBlock">
+      <div class="response error_message_sml">
+        {{ error }}
+      </div>
+    </ng-container>
+
+    <ng-template #messageBlock>
+      <ng-container *ngIf="message$ | async as message">
+        <div class="response successful">
+          {{ message }}
+        </div>
+      </ng-container>
+    </ng-template>
+
     <label>
-      <div class="label_text">{{ local.auth.inputEmail }}</div>
-      <app-input
-        [placeholder]="local.auth.inputEmailPlaceholder"
+      <div class="label_text">{{ local.inputEmail }}</div>
+      <app-form-control
+        [placeholder]="local.inputEmailPlaceholder"
         [control]="username"
         [validationMessages]="usernameValidationMessages"
       >
-      </app-input>
+      </app-form-control>
     </label>
     <label>
-      <div class="label_text">{{ local.auth.inputPassword }}</div>
-      <app-input
-        [placeholder]="local.auth.inputPasswordPlaceholder"
+      <div class="label_text">{{ local.inputPassword }}</div>
+      <app-form-control
+        [placeholder]="local.inputPasswordPlaceholder"
         [control]="password"
         [usePasswordIcon]="true"
         [type]="'password'"
         [validationMessages]="passwordValidationMessages"
-      ></app-input>
+      ></app-form-control>
     </label>
     <label *ngIf="!isLoginType">
-      <div class="label_text">{{ local.auth.inputConfirmPassword }}</div>
-      <app-input
-        [placeholder]="local.auth.inputPasswordPlaceholder"
+      <div class="label_text">{{ local.inputConfirmPassword }}</div>
+      <app-form-control
+        [placeholder]="local.inputPasswordPlaceholder"
         [control]="confirmPassword"
         [usePasswordIcon]="true"
         [type]="'password'"
         [validationMessages]="confirmPasswordValidationMessages"
-      ></app-input>
+      ></app-form-control>
     </label>
     <div *ngIf="isLoginType" class="forgot_password">
       <button class="text-btn">
-        {{ local.auth.forgotPassword }}
+        {{ local.forgotPassword }}
       </button>
     </div>
-    <button
-      class="login_btn orange-btn"
-      (click)="authenticate()"
-      (keyup.enter)="authenticate()"
-    >
-      {{ isLoginType ? local.auth.loginButton : local.auth.registerButton }}
+    <button class="login_btn orange-btn" (click)="authenticate($event)">
+      {{ isLoginType ? local.loginButton : local.registerButton }}
     </button>
     <div class="options-container">
-      <h6 class="options_header">{{ local.auth.authOptions }}</h6>
+      <h6 class="options_header">{{ local.authOptions }}</h6>
       <div class="options">
         <div class="auth_icon">
           <img
             class="google_icon"
-            src="assets/pictures/icons/google.svg"
+            [src]="images.googleIcon"
             alt="google"
           />
-          <span>{{ local.auth.authGoogle }}</span>
+          <span>{{ local.authGoogle }}</span>
         </div>
         <div class="auth_icon">
           <img
             class="apple_icon"
-            src="assets/pictures/icons/apple.svg"
+            [src]="images.appleIcon"
             alt="apple"
           />
-          <span>{{ local.auth.authApple }}</span>
+          <span>{{ local.authApple }}</span>
         </div>
       </div>
     </div>
     <div class="switch_forms">
       <span>{{
-        isLoginType ? local.auth.dontHaveAccount : local.auth.alreadyHaveAccount
+        isLoginType ? local.dontHaveAccount : local.alreadyHaveAccount
       }}</span>
       <button class="text-btn" (click)="switchForms()">
         {{
-          isLoginType ? local.auth.switchToRegister : local.auth.switchToLogin
+          isLoginType ? local.switchToRegister : local.switchToLogin
         }}
       </button>
     </div>
@@ -90,7 +105,7 @@
 
 <ng-template #altStrategyView>
   <div class="different_strategy">
-    <span class="realtor_login">{{ local.auth.realtorLogin }}</span>
-    <span>{{ local.auth.carBrokerLogin }}</span>
+    <span class="realtor_login">{{ local.realtorLogin }}</span>
+    <span>{{ local.carBrokerLogin }}</span>
   </div>
 </ng-template>

@@ -1,0 +1,31 @@
+<div class="main_navbar">
+  <ul class="boards">
+    <img [src]="logoSvg" alt="Yad2" />
+    <li>{{ local.header_realestate }}</li>
+    <li>{{ local.header_automobiles }}</li>
+    <li>{{ local.header_secondhand }}</li>
+    <li>{{ local.header_recruiting }}</li>
+    <li>{{ local.header_businessForSale }}</li>
+    <li>{{ local.header_pets }}</li>
+    <li>{{ local.header_trades }}</li>
+    <li>{{ local.header_more }}</li>
+  </ul>
+  <div class="buttons">
+    <div class="alerts">
+      <img [src]="local.src_bell" />
+    </div>
+    <div class="favorites">
+      <img [src]="local.src_favorites" />
+    </div>
+    <div class="account"></div>
+    <button class="publish green-button" routerLink="/publish">
+      {{ local.btn_publishNewAd }}
+    </button>
+  </div>
+</div>
+<ul class="listings">
+  <li>{{ local.header_forsale }}</li>
+  <li>{{ local.header_forrent }}</li>
+  <li>{{ local.header_forroommates }}</li>
+  <li>{{ local.header_commercialRealestate }}</li>
+</ul>
