@@ -1,8 +1,15 @@
-<app-publish-navbar></app-publish-navbar>
-<main>
-  <app-select-ad-category *ngIf="currentStep === 0 else sevenStepsTemplate" (nextStep)="setCategory($event)"></app-select-ad-category>
-  <ng-template #sevenStepsTemplate>
-    <app-step1 [stepData]="sevenSteps.step1"></app-step1>
-    <app-step2 [stepData]="sevenSteps.step2"></app-step2>
-  </ng-template>
-</main>
+<app-publish-navbar [currentStep]="CurrentStep"></app-publish-navbar>
+<app-select-ad-category
+  *ngIf="CurrentStep === 0; else sevenStepsTemplate"
+  (nextStep)="setYad2Board($event)"
+></app-select-ad-category>
+<ng-template #sevenStepsTemplate>
+  <main class="seven_steps">
+    <ng-container *ngFor="let step of values">
+      <app-step-container
+        [stepData]="step"
+        [currentStep]="CurrentStep"
+      ></app-step-container>
+    </ng-container>
+  </main>
+</ng-template>

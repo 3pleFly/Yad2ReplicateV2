@@ -1,0 +1,16 @@
+export const propertyFeatures = {
+  accessability: 'נגישה לנכים',
+  ac: 'מזגן',
+  windowBars: 'סורגים',
+  waterHeating: 'דוד שמש',
+  elevator: 'מעלית',
+  roommates: 'לשותפים',
+  furnished: 'מרוהטת',
+  unit: 'יחידת דיור',
+  kosherKitchen: 'מטבח כשר',
+  pets: 'חיות מחמד',
+  renovated: 'משופצת',
+  mamad: 'ממ״ד',
+  tadiranAc: 'מזגן תדיראן',
+  storage: 'מחסן',
+};

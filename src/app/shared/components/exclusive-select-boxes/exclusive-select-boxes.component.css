@@ -1,0 +1,81 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.options {
+  display: flex;
+  flex-grow: 1;
+}
+
+.options li:first-of-type {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none;
+}
+
+.options li:last-of-type {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.options li:not(li:last-of-type):not(li:first-of-type) {
+  border-radius: 0;
+  border-left: none;
+}
+
+.options li:hover {
+  border-color: var(--safetyOrange);
+  color: var(--safetyOrange);
+}
+
+.options li:hover:after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background-color: var(--safetyOrange);
+  top: 0;
+  left: -1px;
+  z-index: 1;
+}
+
+.options li {
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid var(--pastelGray);
+  border-radius: 4px;
+  display: grid;
+  place-content: center;
+  padding: 0 12px;
+  font-size: 14px;
+  color: var(--jet);
+  transition: all 0.1s ease-out;
+}
+
+.selected {
+  border-color: var(--safetyOrange) !important;
+  color: var(--safetyOrange) !important;
+  background: var(--bianca) !important;
+}
+
+.selected:after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background-color: var(--safetyOrange);
+  top: 0;
+  left: -1px;
+  z-index: 1;
+}

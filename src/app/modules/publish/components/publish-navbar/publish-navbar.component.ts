@@ -1,7 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LocalisationService } from 'src/app/core/services/localisation.service';
 import { SessionService } from 'src/app/core/services/session.service';
+import { PublishRealestateService } from '../../services/publish-realestate.service';
 
 @Component({
   selector: 'app-publish-navbar',
@@ -12,19 +18,14 @@ import { SessionService } from 'src/app/core/services/session.service';
 export class PublishNavbarComponent {
   constructor(
     private localService: LocalisationService,
-    private sessionService: SessionService,
-    private activatedRoute: ActivatedRoute
+    private sessionService: SessionService
   ) {}
 
+  @Input() currentStep!: number;
   siteLogo = this.localService.main.siteLogo;
   activeUser = this.localService.images.activeUser;
   local = this.localService.publish;
-
-  route$ = this.activatedRoute.url;
   user$ = this.sessionService.user$;
 
-
-  exit() {
-
-  }
+  exit() {}
 }

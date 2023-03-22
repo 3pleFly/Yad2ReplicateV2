@@ -1,0 +1,59 @@
+:host {
+  display: block;
+}
+
+.description {
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+
+
+.publish_realestate_form_section li app-form-control {
+  --label-font-size: 14px;
+  --label-font-weight: 500;
+}
+
+.publish_realestate_form_section li app-autocomplete-dropdown {
+  --control-label-font-size: 14px;
+  --control-label-font-weight: 500;
+}
+
+.form_sub_section {
+  display: flex;
+  gap: 10px;
+  height: 100%;
+}
+
+.form_sub_section li app-common-input {
+  --input-width: 100%;
+  --label-font-size: 14px;
+  --label-font-weight: 500;
+}
+
+.form_sub_section li {
+  position: relative;
+}
+
+.form_sub_section li app-checkmark-control {
+  position: absolute;
+  top: 50%;
+  width: 100px;
+  --label-font-size: 14px;
+}
+
+
+app-divider {
+  margin: 30px 0;
+  max-width: 605px;
+}
+
+.disabled_section li {
+  height: 80px;
+}
+
+.monthly_ads {
+  margin-bottom: 50px;
+  font-size: 14px;
+  display: block;
+}

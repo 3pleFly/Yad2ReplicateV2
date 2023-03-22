@@ -57,6 +57,8 @@ label {
   user-select: none;
 }
 
-label span {
+label > span {
   margin-right: 5px;
+  font-size: var(--label-font-size);
+
 }

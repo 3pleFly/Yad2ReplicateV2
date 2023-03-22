@@ -1,10 +1,14 @@
+:host {
+display: block;
+background-color: #fff;
+padding: 10px 20px;
+}
 
 nav {
   display: flex;
   justify-content: space-between;
-  padding: 10px 20px;
-  background-color: #fff;
-
+  max-width: 1240px;
+  margin: auto;
 }
 
 nav section {
@@ -22,6 +26,7 @@ nav section {
 
 .contact {
   cursor: pointer;
+  margin: 0 16px;
 }
 
 .user {
@@ -36,4 +41,20 @@ nav section {
 
 .user img {
   width: 25px;
+}
+
+.exit {
+  width: 81px;
+  height: 31px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.exit::after {
+  content: "\2715";
+  display: block;
+  font-size: 18px;
 }

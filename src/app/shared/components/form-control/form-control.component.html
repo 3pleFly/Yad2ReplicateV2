@@ -1,5 +1,9 @@
-<div class="input-container">
-  <ng-container *ngIf="control.statusChanges | async"></ng-container>
+<ng-container *ngIf="control.statusChanges | async"></ng-container>
+<label class="input-container">
+  <span
+    [ngClass]="{ label_text: true, disabled_text_color: control.disabled }"
+    >{{ label | requiredAsterisk : required }}</span
+  >
   <input
     [ngClass]="{
       common_input: true,
@@ -8,7 +12,10 @@
     [type]="type"
     [placeholder]="placeholder"
     [formControl]="control"
+    [readOnly]="readonly"
     (blur)="onBlur($event)"
+    (change)="onChange($event)"
+    (keyup)="onKeyUp($event)"
     #input
   />
   <ng-template [ngIf]="usePasswordIcon">
@@ -18,7 +25,13 @@
       (click)="togglePasswordInput()"
     />
   </ng-template>
-</div>
+</label>
+<span
+  *ngIf="caption"
+  [ngClass]="{ caption: true, disabled_text_color: control.disabled }"
+>
+  {{ caption }}
+</span>
 <app-validation-error
   [controlErrors]="control.errors"
   [touched]="control.touched"

@@ -1,0 +1,36 @@
+<label class="label">
+  <span class="label_text">{{ label }}</span>
+  <div
+    [ngClass]="{
+      top_caption: true,
+      'start-color': fillbarProgress > 2 && fillbarProgress < 30,
+      'middle-color': fillbarProgress > 29 && fillbarProgress < 100,
+      'final-color': fillbarProgress > 99 && fillbarProgress < 999
+    }"
+  >
+    {{ progressBarMessage }}
+    <span class="fillbar_counter"
+      >{{ fillbarProgress }}/{{ fillbarSum }}</span
+    >
+  </div>
+  <div class="textarea">
+    <div>
+      <span
+        class="fillbar"
+        [ngClass]="{
+          'start-color': fillbarProgress > 2 && fillbarProgress < 30,
+          'middle-color': fillbarProgress > 29 && fillbarProgress < 100,
+          'final-color': fillbarProgress > 99 && fillbarProgress < 999
+        }"
+        [ngStyle]="{ width: fillBarWidth }"
+      ></span>
+    </div>
+    <textarea
+      (keyup)="onKeyUp()"
+      (blur)="onBlur()"
+      [(ngModel)]="textAreaValue"
+      [placeholder]="placeholder"
+    ></textarea>
+  </div>
+</label>
+<span class="bottom_caption">{{ bottomCaption }}</span>

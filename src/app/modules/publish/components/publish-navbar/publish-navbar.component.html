@@ -11,7 +11,8 @@
       </ng-container>
     </div>
     <span class="contact">{{ local.navbar_contact }}</span>
-    <button class="exit_btn" (click)="exit()">{{ local.selectCategory_btn_exit }}</button>
-    <p>route: {{route$ | async}}</p>
+    <button *ngIf="currentStep !== 0" class="colorless-btn exit" (click)="exit()">
+      {{ local.selectCategory_btn_exit }}
+    </button>
   </section>
 </nav>

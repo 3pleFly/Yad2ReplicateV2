@@ -1,0 +1,85 @@
+:host {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: block;
+  height: 100%;
+  position: relative;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  background-color: #fff;
+}
+
+.label img {
+  height: 30px;
+}
+
+.label input {
+  cursor: pointer;
+  outline: none;
+  padding-right: 11px;
+  font-size: 1rem;
+  border: none;
+}
+
+.label_text {
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 10px;
+  margin-bottom: 5px;
+}
+
+.control {
+  cursor: pointer;
+  border: 1px solid var(--pastelGray);
+  transition: border-color 0.2s;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px;
+  height: 100%;
+}
+
+.flip_arrow {
+  transform: rotate(-180deg);
+}
+
+.options {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: 4px;
+  background-color: #fff;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  max-height: 26.25rem;
+  z-index: 2;
+  display: block;
+}
+
+.options li {
+  cursor: pointer;
+  padding: 5px 12px;
+  height: 42px;
+  font-size: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.options li:hover {
+  background-color: var(--snow);
+}

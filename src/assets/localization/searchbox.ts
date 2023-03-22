@@ -3,7 +3,7 @@ export const searchbox = {
   header_search2: " תרצו לחפש?",
   header_properties: "מאפייני דירה",
 
-  select_all: "הכל",
+  all: "הכל",
   select_parking: "חניה",
   select_elevator: "מעלית",
   select_balcony: "מרפסת",

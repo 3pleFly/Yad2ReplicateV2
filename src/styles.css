@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;800;900&display=swap');
 @import 'assets/styles/variables.css';
+@import 'assets/styles/publish-realestate.css';
 @import 'assets/styles/inputs.css';
 @import 'assets/styles/buttons.css';
 @import 'assets/styles/errors.css';
@@ -19,4 +20,13 @@ body {
 
 li {
   list-style: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.disabled_text_color {
+  color: #cccccc !important;
 }

@@ -4,7 +4,7 @@ import {
   BehaviorSubject,
   map,
 } from 'rxjs';
-import { Yad2API } from 'src/assets/api/api';
+import { Yad2APIURL } from 'src/assets/api/api';
 import { Yad2Response } from '../models/yad2-response.interface';
 import { User } from '../models/user.interface';
 import { TokenService } from './token.service';
@@ -33,7 +33,7 @@ export class SessionService {
 
   getUser() {
     this.http
-      .get<Yad2Response>(`${Yad2API}/user`)
+      .get<Yad2Response>(`${Yad2APIURL}/user`)
       .pipe(map((r) => this._user.next(<User>r.data)))
       .subscribe();
   }

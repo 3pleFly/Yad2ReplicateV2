@@ -1,0 +1,17 @@
+:host {
+  background: var(--snow);
+  display: block;
+  min-height: 100vh;
+}
+
+.seven_steps {
+  max-width: 880px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.seven_steps > * {
+  margin-bottom: 10px;
+  display: block;
+}
+

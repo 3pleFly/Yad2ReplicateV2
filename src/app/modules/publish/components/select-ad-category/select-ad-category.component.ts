@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { LocalisationService } from 'src/app/core/services/localisation.service';
-import { RealestateCategory } from '../../models/realestate-category.interface';
+import { Yad2Board } from '../../models/board.type';
 
 @Component({
   selector: 'app-select-ad-category',
@@ -12,12 +12,12 @@ import { RealestateCategory } from '../../models/realestate-category.interface';
 export class SelectAdCategoryComponent {
   constructor(private localService: LocalisationService) {}
 
-  @Output() nextStep = new EventEmitter<RealestateCategory>();
+  @Output() nextStep = new EventEmitter<Yad2Board>();
 
   local = this.localService.publish;
   images = this.localService.images.selectCategory;
 
-  realestateForSale(category: RealestateCategory) {
-    this.nextStep.emit(category);
+  realestateForSale(board: Yad2Board) {
+    this.nextStep.emit(board);
   }
 }

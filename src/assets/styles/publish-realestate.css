@@ -1,0 +1,25 @@
+.publish_realestate_content {
+  background-color: #fff;
+  padding: 24px 16px 50px;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+}
+
+.publish_realestate_showcase {
+  padding: 15px 24px 0;
+  position: relative;
+}
+
+.publish_realestate_form_section {
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 260px;
+}
+
+.publish_realestate_form_section > li {
+  list-style: none;
+  display: block;
+  height: 67px;
+  margin-bottom: 25px;
+}

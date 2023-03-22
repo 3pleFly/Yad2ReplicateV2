@@ -1,0 +1,33 @@
+<label
+  class="label"
+  (click)="toggleDropdownView($event)"
+  tabindex="-1"
+>
+  <div class="label_text">{{ label | requiredAsterisk : required }}</div>
+  <div class="control">
+    <input
+      [value]="inputValue"
+      readonly
+      [placeholder]="placeholder"
+      type="text"
+    />
+    <img
+      [ngClass]="{ flip_arrow: optionsDropdownView }"
+      [src]="dropdownArrowImg"
+    />
+  </div>
+  <ng-template [ngIf]="optionsDropdownView" #optionsTemplate>
+    <ul class="options">
+      <li (click)="markOption(option, $event)" *ngFor="let option of options">
+        <span>
+          {{ option }}
+        </span>
+        <img
+          *ngIf="selectedOption === option"
+          [src]="markSelectedImg"
+          alt="selected"
+        />
+      </li>
+    </ul>
+  </ng-template>
+</label>

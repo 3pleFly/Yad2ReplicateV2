@@ -1,0 +1,89 @@
+:host {
+  display: block;
+  font-size: 14px;
+}
+
+.label {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 130px;
+}
+
+.label_text {
+  font-weight: 500;
+  display: block;
+}
+
+
+.top_caption {
+  display: flex;
+  position: relative;
+  margin-bottom: 5px;
+  background-color: #fff !important;
+
+}
+
+.fillbar_counter {
+  position: absolute;
+  left: -2px;
+  background-color: #fff !important;
+
+}
+
+.top_caption span {
+  color: #999999;
+}
+
+.top_caption_text {
+  flex-grow: 1;
+}
+
+.bottom_caption {
+}
+
+.fillbar {
+  background-color: var(--isabelline);
+  height: 5px;
+  position: relative;
+  display: block;
+}
+
+
+.start-color {
+  background-color: #ff7100;
+  color: #ff7100;
+}
+
+.middle-color {
+  background-color: #fbaf02;
+  color: #fbaf02;
+}
+
+.final-color {
+  color: #43c671;
+  background-color: #43c671;
+}
+
+.textarea {
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  transition: border-color 0.2s;
+  border: 1px solid var(--pastelGray);
+  background-color: #fff;
+  overflow-x: hidden;
+  flex-grow: 1;
+}
+
+.textarea textarea {
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  padding: 12px;
+  resize: none;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+

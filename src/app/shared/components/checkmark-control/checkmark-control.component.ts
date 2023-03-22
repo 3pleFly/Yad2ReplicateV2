@@ -38,6 +38,6 @@ export class CheckmarkControlComponent {
   @Output() marked = new EventEmitter<boolean>();
 
   mark(checked: boolean, e: Event) {
-    this.marked.emit();
+    this.marked.emit(checked);
   }
 }

@@ -2,14 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  Output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LocalisationService } from 'src/app/core/services/localisation.service';
 import { CheckmarkDropdownComponent } from '../checkmark-dropdown/checkmark-dropdown.component';
 import { CheckmarkList } from '../../models/checkmark-list.interface';
-import { SearchboxService } from '../../../modules/realestate-forsale/services/searchbox.service';
-
 @Component({
   selector: 'app-select-dropdown-checkbox',
   standalone: true,

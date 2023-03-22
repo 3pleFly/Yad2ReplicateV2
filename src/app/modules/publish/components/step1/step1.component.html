@@ -1,10 +1,24 @@
-<!-- <ng-container [ngTemplateOutlet]="(route$ | async) === stepData.index ? showcase : preview"></ng-container> -->
-hello
-<ng-template #preview>
-  <app-step-preview [index]="stepData.index" [title]="stepData.previewTitle"></app-step-preview>
-</ng-template>
-<ng-template #showcase>
-
-  <h2>{{stepData.showcaseTitle}}</h2>
-
-</ng-template>
+<section class="publish_realestate_content">
+  <app-seven-step-form-title
+    [index]="stepData.index"
+    [title]="stepData.showcaseTitle"
+  ></app-seven-step-form-title>
+  <ul class="categories">
+    <li (click)="onForsaleCategory()">
+      <img [src]="images.sale" />
+      <div>{{ local.step1_option_forSsale }}</div>
+    </li>
+    <li>
+      <img [src]="images.rent" />
+      <div>{{ local.step1_option_forRent }}</div>
+    </li>
+    <li>
+      <img [src]="images.roommates" />
+      <div>{{ local.step1_option_forRoommates }}</div>
+    </li>
+    <li>
+      <img [src]="images.commercial" />
+      <div>{{ local.step1_option_forCommercial }}</div>
+    </li>
+  </ul>
+</section>

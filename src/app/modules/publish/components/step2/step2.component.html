@@ -1,8 +1,100 @@
-<ng-template #preview>
-  <app-step-preview [index]="stepData.index" [title]="stepData.previewTitle"></app-step-preview>
-</ng-template>
-<ng-template #showcase>
-
-  <h2>{{stepData.showcaseTitle}}</h2>
-
-</ng-template>
+<section class="publish_realestate_content">
+  <app-seven-step-form-title
+    [index]="stepData.index"
+    [title]="stepData.showcaseTitle"
+  ></app-seven-step-form-title>
+  <div class="publish_realestate_showcase">
+    <div class="description">{{ local.step2_description }}</div>
+    <ul class="publish_realestate_form_section">
+      <li>
+        <app-dropdown-select
+          [label]="local.step2_label_selectPropertyType"
+          [placeholder]="local.step2_placeholder_selectPropertyType"
+          [options]="propertyTypesOptions"
+          [required]="true"
+        >
+        </app-dropdown-select>
+      </li>
+      <li>
+        <app-dropdown-select
+          [label]="local.step2_label_selectPropertyState"
+          [placeholder]="local.step2_placeholder_selectPropertyState"
+          [options]="propertyStatesOptions"
+          [required]="true"
+        ></app-dropdown-select>
+      </li>
+    </ul>
+    <app-divider></app-divider>
+    <ul class="publish_realestate_form_section">
+      <li>
+        <app-autocomplete-dropdown
+          [control]="form.controls.city"
+          [label]="local.step2_label_inputCity"
+          [placeholder]="local.step2_placeholder_inputCity"
+          [dataList]="cityDataList$ | async"
+          (controlValueChange)="onSelectCity($event)"
+          [required]="true"
+        ></app-autocomplete-dropdown>
+      </li>
+      <li *ngIf="streetControlView">
+        <app-autocomplete-dropdown
+          [control]="form.controls.street"
+          [label]="local.step2_label_inputAddress"
+          [placeholder]="local.step2_placeholder_inputAddress"
+          [dataList]="streetDataList$ | async"
+          (controlValueChange)="onSelectStreet($event)"
+          [required]="true"
+        ></app-autocomplete-dropdown>
+      </li>
+      <li>
+        <ul class="form_sub_section">
+          <li>
+            <app-common-input
+              [labelName]="local.step2_label_inputFloor"
+              [placeholder]="local.step2_placeholder_inputFloor"
+              [required]="floorControlRequired"
+            ></app-common-input>
+          </li>
+          <li>
+            <app-common-input
+              [labelName]="local.step2_label_inputTotalFloors"
+              [placeholder]="local.step2_placeholder_inputTotalFloors"
+              [required]="totalFloorControlRequired"
+            ></app-common-input>
+          </li>
+          <li>
+            <app-checkmark-control
+              [checkmark]="isOnColumnsCheckmark"
+            ></app-checkmark-control>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <app-divider></app-divider>
+    <ul class="publish_realestate_form_section disabled_section">
+      <li>
+        <app-form-control
+          [label]="local.step2_label_inputNeighborhood"
+          [control]="form.controls.neighborhood"
+          [caption]="local.step2_caption_governmentInformation"
+        ></app-form-control>
+      </li>
+      <li>
+        <app-form-control
+          [label]="local.step2_label_inputArea"
+          [control]="form.controls.area"
+          [caption]="local.step2_caption_governmentInformation"
+        ></app-form-control>
+      </li>
+    </ul>
+    <app-divider></app-divider>
+    <app-checkmark-control
+      class="monthly_ads"
+      [checkmark]="monthlyEmailAdsCheckmark"
+    ></app-checkmark-control>
+    <app-form-nav-buttons
+      (nextStep)="nextStep()"
+      (prevStep)="prevStep()"
+    ></app-form-nav-buttons>
+  </div>
+</section>

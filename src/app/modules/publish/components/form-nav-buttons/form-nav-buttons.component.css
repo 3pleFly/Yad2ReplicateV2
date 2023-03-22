@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+  border-radius: 30px;
+  height: 36px;
+  background: none;
+  padding: 0 18px;
+}
+
+.next {
+  border: 1px solid var(--yad2Orange);
+  color: var(--yad2Orange);
+  font-weight: 500;
+}
+
+.next:hover {
+  background: var(--bianca);
+
+}

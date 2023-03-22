@@ -1,0 +1,47 @@
+:host {
+}
+
+.categories {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.categories li {
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  width: 177px;
+  height: 177px;
+  display: grid;
+  place-content: center;
+}
+
+.categories li div {
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.categories li:hover {
+  color: var(--yad2Orange);
+}
+
+.categories li img {
+  width: 105px;
+  height: 105px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 880px) {
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .categories li {
+    width: initial;
+  }
+
+}

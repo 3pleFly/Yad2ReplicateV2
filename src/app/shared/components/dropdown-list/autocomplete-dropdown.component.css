@@ -1,0 +1,33 @@
+:host {
+  position: relative;
+}
+
+.dropdown_list {
+  position: absolute;
+  top: 110%;
+  width: 100%;
+  border-radius: 4px;
+  background-color: #fff;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  max-height: 26.25rem;
+  z-index: 1;
+}
+
+.dropdown_list li {
+  cursor: pointer;
+  padding: 5px 12px;
+  height: 42px;
+  font-size: 100%;
+  font-size: 14px;
+}
+
+.dropdown_list li:hover {
+  background-color: var(--snow);
+}
+
+app-form-control {
+  --label-font-size: var(--control-label-font-size);
+  --label-font-weight: var(--control-label-font-weight);
+}

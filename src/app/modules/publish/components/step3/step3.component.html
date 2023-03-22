@@ -1,0 +1,69 @@
+<section class="publish_realestate_content">
+  <app-seven-step-form-title
+    [index]="stepData.index"
+    [title]="stepData.showcaseTitle"
+  ></app-seven-step-form-title>
+  <div class="publish_realestate_showcase">
+    <ul class="publish_realestate_form_section">
+      <li>
+        <app-dropdown-select
+          [label]="local.step3_label_selectRooms"
+          [options]="local.step3_options_selectRooms"
+          [placeholder]="local.step3_placeholder_selectRooms"
+        ></app-dropdown-select>
+      </li>
+      <li>
+        <app-exclusive-select-boxes
+          [label]="local.step3_label_selectParking"
+          [options]="local.setep3_options_selectParking"
+        ></app-exclusive-select-boxes>
+      </li>
+      <li>
+        <app-exclusive-select-boxes
+          [label]="local.step3_label_selectBalcony"
+          [options]="local.setep3_options_selectBalcony"
+        ></app-exclusive-select-boxes>
+      </li>
+    </ul>
+    <app-divider></app-divider>
+    <app-multiple-select-boxes
+      [label]="local.step3_label_propertyFeatures"
+      [(options)]="propertyFeaturesBoxes"
+    ></app-multiple-select-boxes>
+    <section class="tlv_contract">
+      <div>
+        <p class="tlv_contract_caption">
+          {{ local.step3_caption1_contract }}
+        </p>
+        <button class="text-btn contract_btn">
+          {{ local.step3_caption2_contract }}
+        </button>
+        <app-checkmark-control
+          [checkmark]="tlvContractCheckmark"
+        ></app-checkmark-control>
+      </div>
+      <img [src]="telAvivSvg" alt="by tel aviv" />
+    </section>
+    <section class="form_description">
+      <h3>{{ local.step3_header_description }}</h3>
+      <app-text-area
+        *ngIf="isFurniturePropertyFeatureMarked()"
+        [label]="local.step3_label_furnitureDescription"
+        [counterSum]="200"
+      ></app-text-area>
+      <app-text-area-fillbar
+        [label]="local.step3_label_description"
+        [placeholder]="local.step3_placeholder_description"
+        [messages]="textAreaProgressBarMessage"
+        [bottomCaption]="local.step3_label_caption2_description"
+        [fillbarSum]="400"
+      ></app-text-area-fillbar>
+    </section>
+    <section>
+      <app-form-nav-buttons
+        (nextStep)="nextStep()"
+        (prevStep)="prevStep()"
+      ></app-form-nav-buttons>
+    </section>
+  </div>
+</section>

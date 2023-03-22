@@ -31,3 +31,19 @@
   background: var(--yad2Green);
   border-radius: 30px;
 }
+
+.colorless-btn {
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+  border-radius: 30px;
+  height: 36px;
+  background: none;
+  padding: 0 18px;
+  color: var(--jet);
+  border: 1px solid var(--pastelGray);
+}
+
+.colorless-btn:hover {
+  border-color: var(--spanishGray);
+}

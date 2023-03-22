@@ -1,6 +1,27 @@
 :root {
-  --pastelGray: rgb(204,204,204);
-  --yad2Orange: #FF7100;
+  --spanishGray: rgb(153, 153, 153);
+  --pastelGray: rgb(204, 204, 204);
+  --gainsboro: rgb(220, 220, 220);
+  --snow: rgb(248, 248, 248);
+  --isabelline: rgb(238, 238, 238);
+  --azureishWhite: rgb(223, 247, 237);
+  --bianca: rgb(255, 250, 245);
+  --yad2Orange: #ff7100;
+  --safetyOrange: rgb(255, 113, 0);
   --yad2OrangeDarker: #c75900;
   --yad2Green: #0fca80;
+  --yad2LightGreen: #d6f2e4;
+  --caribbeanGreen: rgb(15, 202, 128);
+
+  --jet: rgb(54, 54, 54);
+
+  --height-small: 30px;
+  --height-medium: 40px;
+  --height-large: 50px;
+  --shadow-level-2: 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+  --shadow-level-3: 0 3px 10px 0 rgba(0, 0, 0, 0.15);
+  --border-radius: 4px;
+
+  --input-width: 100%;
+  --input-height: 100%;
 }
