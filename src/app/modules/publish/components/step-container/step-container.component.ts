@@ -1,8 +1,16 @@
-import { Component, Injector, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  createEnvironmentInjector,
+  Injector,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { PublishRealestateService } from '../../services/publish-realestate.service';
-
 import { StepData } from '../../models/step-data.interface';
-import { IStep } from '../../models/istep.interface';
+import { StepHostDirective } from '../../directives/step-host.directive';
+import { BaseStep } from '../../directives/base-step.directive';
 
 @Component({
   selector: 'app-step-container',
@@ -14,28 +22,42 @@ import { IStep } from '../../models/istep.interface';
       [currentStep]="currentStep"
     ></app-step-preview>
     <ng-template #showcase>
-      <ng-container
-        *ngComponentOutlet="stepData.component; injector: injector"
-      ></ng-container>
+      <p>?</p>
+      <ng-template stepHost></ng-template>
     </ng-template>
   `,
 })
-export class StepContainerComponent implements OnInit, IStep {
-  constructor(private realestateService: PublishRealestateService) {}
+export class StepContainerComponent  {
+  constructor(
+    private realestateService: PublishRealestateService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   @Input() stepData!: StepData;
   @Input() currentStep!: number;
-  injector!: Injector;
 
-  ngOnInit(): void {
-    this.injector = Injector.create({
+  @ViewChild(StepHostDirective) set stepHost(stepHost: StepHostDirective) {
+    if (stepHost) {
+      this.loadComponent(stepHost);
+    }
+  }
+
+  loadComponent(stepHost: StepHostDirective) {
+    const injector = Injector.create({
       providers: [
-        { provide: StepData, useValue: this.stepData },
         {
           provide: PublishRealestateService,
           useValue: this.realestateService,
         },
+        { provide: StepData, useValue: this.stepData },
       ],
     });
+    const componentRef = stepHost.viewContainerRef.createComponent<BaseStep>(
+      this.stepData.component,
+      { injector: injector }
+    );
+
+    stepHost.viewContainerRef.insert(componentRef.hostView);
+    this.cdr.detectChanges();
   }
 }

@@ -11,7 +11,7 @@ import { PublishRealestateService } from '../../services/publish-realestate.serv
   providers: [{ provide: BaseStep, useExisting: Step6Component }],
 })
 export class Step6Component extends BaseStep {
-  constructor(realestateService: PublishRealestateService, override stepData: StepData) {
-    super(realestateService);
+  constructor(realestateService: PublishRealestateService, stepData: StepData) {
+    super(realestateService, stepData);
   }
 }

@@ -1,14 +1,13 @@
-import { Directive, Input } from '@angular/core';
-import { IStep } from '../models/istep.interface';
+import { Directive } from '@angular/core';
 import { StepData } from '../models/step-data.interface';
 import { PublishRealestateService } from '../services/publish-realestate.service';
 
 @Directive()
-export class BaseStep implements IStep {
-  constructor(protected realestateService: PublishRealestateService) {}
-
-  @Input() stepData!: StepData;
-  @Input() currentStep!: number;
+export class BaseStep {
+  constructor(
+    protected realestateService: PublishRealestateService,
+    protected stepData: StepData
+  ) {}
 
   nextStep() {
     this.realestateService.nextStep();

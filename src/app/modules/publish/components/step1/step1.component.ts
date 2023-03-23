@@ -10,12 +10,14 @@ import { PublishRealestateService } from '../../services/publish-realestate.serv
   styleUrls: ['./step1.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Step1Component {
+export class Step1Component extends BaseStep {
   constructor(
     private localService: LocalisationService,
-    private realestateService: PublishRealestateService,
-    protected stepData: StepData
-  ) {}
+    realestateService: PublishRealestateService,
+    stepData: StepData
+  ) {
+    super(realestateService, stepData);
+  }
 
   local = this.localService.publish;
   images = this.localService.images.publish.step1;

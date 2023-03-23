@@ -24,9 +24,9 @@ export class Step3Component extends BaseStep {
   constructor(
     private localService: LocalisationService,
     realestateService: PublishRealestateService,
-    override stepData: StepData
+    stepData: StepData
   ) {
-    super(realestateService);
+    super(realestateService, stepData);
   }
 
   local = this.localService.publish;

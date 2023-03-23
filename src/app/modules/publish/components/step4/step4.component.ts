@@ -8,11 +8,13 @@ import { StepData } from '../../models/step-data.interface';
   templateUrl: './step4.component.html',
   styleUrls: ['./step4.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{provide: BaseStep, useExisting: Step4Component}]
-
+  providers: [{ provide: BaseStep, useExisting: Step4Component }],
 })
 export class Step4Component extends BaseStep {
-  constructor(realestateService: PublishRealestateService, override stepData: StepData) {
-    super(realestateService);
+  constructor(realestateService: PublishRealestateService, stepData: StepData) {
+    super(realestateService, stepData);
+    this.stepData = stepData;
   }
+
+
 }

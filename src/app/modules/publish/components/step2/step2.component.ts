@@ -33,9 +33,9 @@ export class Step2Component extends BaseStep implements OnInit {
     private apiRequestService: ApiRequestService,
     private formData: FormDataService<Yad2RealestateFormData>,
     realestateService: PublishRealestateService,
-    override stepData: StepData
+    stepData: StepData
   ) {
-    super(realestateService);
+    super(realestateService, stepData);
   }
 
   ngOnInit(): void {}

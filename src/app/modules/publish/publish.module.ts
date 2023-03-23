@@ -32,7 +32,7 @@ import { MultipleSelectBoxesComponent } from 'src/app/shared/components/multiple
 import { TextAreaFillbarComponent } from 'src/app/shared/components/text-area-fillbar/text-area-fillbar.component';
 import { TextAreaComponent } from 'src/app/shared/components/text-area/text-area.component';
 import { StepContainerComponent } from './components/step-container/step-container.component';
-import { BaseStep } from './directives/base-step.directive';
+import { StepHostDirective } from './directives/step-host.directive';
 
 const routes: Routes = [
   {
@@ -58,6 +58,7 @@ const routes: Routes = [
     Step7Component,
     SevenStepFormTitleComponent,
     FormNavButtonsComponent,
+    StepHostDirective
   ],
   providers: [TokenInterceptorProvider, FormDataService, Yad2ApisProvider],
   imports: [
