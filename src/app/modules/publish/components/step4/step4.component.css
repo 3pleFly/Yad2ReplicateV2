@@ -1,0 +1,35 @@
+ul {
+  margin-bottom: 50px;
+}
+
+ul li {
+  --label-font-size: 14px;
+  --label-font-weight: 500;
+}
+
+.date_control {
+  position: relative;
+}
+
+.date_checkmarks {
+  position: absolute;
+  display: flex;
+  top: 50%;
+  right: 100%;
+}
+
+.date_checkmarks > * {
+  margin-right: 15px;
+}
+
+.price_per_meter_control, .price_control {
+  font-size: 14px;
+}
+
+.price_per_meter_control {
+  color: #ccc;
+}
+
+app-form-control {
+  --input-height: 45px;
+}

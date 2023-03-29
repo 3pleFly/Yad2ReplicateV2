@@ -51,6 +51,7 @@
   cursor: pointer;
   position: relative;
   width: 100%;
+  height: var(--input-height);
   background-color: #fff;
   border: 1px solid var(--pastelGray);
   border-radius: 4px;

@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { LocalisationService } from 'src/app/core/services/localisation.service';
 import { BaseStep } from '../../directives/base-step.directive';
 import { StepData } from '../../models/step-data.interface';
-import { PublishRealestateService } from '../../services/publish-realestate.service';
+import { RealestateDataService } from '../../services/publish-realestate.service';
+import { RealestateFormService } from '../../services/realestate-form-data.service';
 
 @Component({
   selector: 'app-step1',
@@ -13,20 +14,22 @@ import { PublishRealestateService } from '../../services/publish-realestate.serv
 export class Step1Component extends BaseStep {
   constructor(
     private localService: LocalisationService,
-    realestateService: PublishRealestateService,
+    realestateService: RealestateDataService,
+    formData: RealestateFormService,
     stepData: StepData
   ) {
-    super(realestateService, stepData);
+    super(realestateService, stepData, formData);
   }
 
   local = this.localService.publish;
   images = this.localService.images.publish.step1;
 
-  onForsaleCategory() {
-    this.realestateService.nextStep();
+  setListingCategory(listingCategoryId: number) {
+    this.setFormData({ boardId: 1, listingId: listingCategoryId });
+    this.nextStep();
   }
 
   emitPrevStep(prevStep: number) {
-    this.realestateService.prevStep();
+    this.prevStep();
   }
 }

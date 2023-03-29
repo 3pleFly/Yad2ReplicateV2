@@ -3,4 +3,109 @@
     [index]="stepData.index"
     [title]="stepData.showcaseTitle"
   ></app-seven-step-form-title>
+  <div class="publish_realestate_showcase">
+    <span class="description">{{ local.step6_description }}</span>
+    <ul class="user_inputs publish_realestate_form_section">
+      <li>
+        <app-form-control
+          [control]="form.controls.contactName"
+          [label]="local.step6_label_inputName"
+          [required]="true"
+          [validationMessages]="requiredValidationMessage"
+        ></app-form-control>
+      </li>
+      <li>
+        <app-form-control
+          [control]="form.controls.phoneNumber"
+          [label]="local.step6_label_inputPhoneNumber"
+          [required]="true"
+          [validationMessages]="requiredValidationMessage"
+        ></app-form-control>
+      </li>
+      <li *ngIf="secondaryContactActive">
+        <app-form-control
+          [control]="form.controls.secondContactName"
+          [label]="local.step6_label_inputPhoneNumber"
+          [required]="true"
+        ></app-form-control>
+      </li>
+      <li *ngIf="secondaryContactActive">
+        <app-form-control
+          [control]="form.controls.secondContactPhoneNumber"
+          [label]="local.step6_label_inputPhoneNumber"
+          [required]="true"
+        ></app-form-control>
+      </li>
+      <div class="secondary_contact_btn" (click)="toggleSecondaryContact()">
+        <fa-icon
+          [icon]="secondaryContactActive ? faCircleMinus : faCirclePlus"
+        ></fa-icon>
+        <button class="text-btn">
+          {{
+            secondaryContactActive
+              ? local.step6_btn_removeSecondaryContact
+              : local.step6_btn_addSecondaryContact
+          }}
+        </button>
+      </div>
+    </ul>
+    <section class="virtualnumber_and_weekendcalls">
+      <app-checkmark-control
+        [checkmark]="useVirtualNumberCheckmark"
+        [control]="form.controls.useVirtualNumber"
+        (marked)="onMarkUseVirtualNumber($event)"
+      >
+        <ng-template #caption>
+          <div class="checkmark_caption">
+            <span>{{ local.step6_caption_checkboxVirtualNumber1 }} </span>
+            <span class="text-btn">{{
+              local.step6_caption_checkboxVirtualNumber2
+            }}</span>
+          </div>
+        </ng-template>
+        <ng-template #icon>
+          <fa-icon [icon]="faCircleQuestion"></fa-icon>
+        </ng-template>
+      </app-checkmark-control>
+      <app-checkmark-control
+        class="calls_over_weekend"
+        [checkmark]="allowWeekendCallsCheckmark"
+        [control]="form.controls.allowCallsOnWeekends"
+        [disabled]="form.controls.allowCallsOnWeekends.disabled"
+      >
+        <ng-template #icon>
+          <fa-icon [icon]="faCircleQuestion"></fa-icon>
+        </ng-template>
+      </app-checkmark-control>
+    </section>
+    <app-divider></app-divider>
+    <section class="accept_terms_section">
+      <app-checkmark-control
+        class="terms_checkmark"
+        [checkmark]="acceptTermsCheckmark"
+        [control]="form.controls.acceptTerms"
+        [dirty]="form.controls.acceptTerms.dirty"
+        [touched]="form.controls.acceptTerms.touched"
+        [validationMessages]="requiredTermsAndPrivacyMessage"
+      >
+        <ng-template #label>
+          <span>
+            {{ acceptTermsCheckmark.name }}
+          </span>
+          <span class="terms-btn text-btn">
+            {{ local.step6_label_checkboxAcceptsTermsAndPrivacy2 }}
+          </span>
+        </ng-template>
+      </app-checkmark-control>
+      <app-checkmark-control
+        [checkmark]="emailAdsCheckmark"
+        [control]="form.controls.allowCommercials"
+      >
+      </app-checkmark-control>
+    </section>
+    <app-form-nav-buttons
+      (nextStep)="submit()"
+      (prevStep)="prevStep()"
+    ></app-form-nav-buttons>
+  </div>
 </section>

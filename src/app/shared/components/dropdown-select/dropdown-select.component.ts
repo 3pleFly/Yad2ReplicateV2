@@ -2,28 +2,44 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  HostListener,
   Input,
+  OnInit,
   Output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LocalisationService } from 'src/app/core/services/localisation.service';
 import { RequiredAsteriskPipe } from '../../pipes/required-asterisk.pipe';
-
+import { TranslationType } from '../../models/translation-type.interface';
+import { Yad2TranslationPipe } from '../../pipes/translate.pipe';
+import { ValidationErrorComponent } from '../validation-error/validation-error.component';
+import { ValidationErrors } from '@angular/forms';
+import { ValidationMessages } from '../../models/validation-messages.interface';
 @Component({
   selector: 'app-dropdown-select',
   standalone: true,
-  imports: [CommonModule, RequiredAsteriskPipe],
   templateUrl: './dropdown-select.component.html',
   styleUrls: ['./dropdown-select.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    CommonModule,
+    RequiredAsteriskPipe,
+    Yad2TranslationPipe,
+    ValidationErrorComponent,
+  ],
 })
-export class DropdownSelectComponent {
+export class DropdownSelectComponent implements OnInit {
   constructor(private localService: LocalisationService) {}
+
   @Input() label!: string;
   @Input() placeholder: string = '';
-  @Input() options!: string[];
+  @Input() options!: string[] | null;
   @Input() required = false;
+  @Input() translatonSrc!: TranslationType;
+  @Input() controlErrors!: ValidationErrors | null;
+  @Input() controlTouched!: boolean;
+  @Input() controlInvalid!: boolean;
+  @Input() controlDirty!: boolean;
+  @Input() validationMessages!: ValidationMessages;
 
   @Input()
   get selectedOption(): string {
@@ -34,10 +50,12 @@ export class DropdownSelectComponent {
     this.select.emit(option);
     this.inputValue = option;
   }
-  private _selectedOption!: string;
 
   @Output() select = new EventEmitter<string | null>();
 
+  ngOnInit(): void {}
+
+  private _selectedOption!: string;
   dropdownArrowImg = this.localService.main.dropdownArrowLight;
   markSelectedImg = this.localService.main.markSelected;
   optionsDropdownView = false;
@@ -53,6 +71,7 @@ export class DropdownSelectComponent {
       return;
     }
     this.selectedOption = option;
+    this.optionsDropdownView = false;
   }
 
   toggleDropdownView(e: Event) {
@@ -61,8 +80,9 @@ export class DropdownSelectComponent {
     this.optionsDropdownView = !this.optionsDropdownView;
   }
 
-  @HostListener('focusout')
-  closeDropdown() {
+  closeDropdown(e: Event) {
+    e.stopPropagation();
+    e.preventDefault();
     this.optionsDropdownView = false;
   }
 }

@@ -1,4 +1,5 @@
-import { InjectionToken, Provider } from '@angular/core';
+import { InjectionToken } from '@angular/core';
+import { IRealestateForm } from 'src/app/modules/publish/models/yad2-form-data.interface';
 import {
   GovtAPi_QueryCity as getCityUrl,
   GovtAPi_QueryStreet as getStreetUrl,
@@ -16,4 +17,3 @@ export type ApiResource = Yad2Api[keyof Yad2Api];
 export const YAD2_APIS = new InjectionToken<Yad2Api>(
   'A list of APIs used by this app'
 );
-

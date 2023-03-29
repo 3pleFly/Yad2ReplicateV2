@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { FormControlComponent } from '../form-control/form-control.component';
 import { BoldSubStringPipe } from '../../pipes/bold-substring.pipe';
+import { ValidationMessages } from '../../models/validation-messages.interface';
 
 @Component({
   selector: 'app-autocomplete-dropdown',
@@ -23,6 +24,7 @@ import { BoldSubStringPipe } from '../../pipes/bold-substring.pipe';
       [label]="label"
       (onKeyUpEvent)="onKeyUp($event)"
       [required]="required"
+      [validationMessages]="validationMessages"
     ></app-form-control>
 
     <ul class="dropdown_list">
@@ -41,15 +43,17 @@ import { BoldSubStringPipe } from '../../pipes/bold-substring.pipe';
 export class AutoCompleteDropdownComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
-
   @Input() required = false;
   @Input() control!: FormControl;
   @Input() placeholder!: string;
   @Input() label!: string;
   @Input() dataList!: string[] | null;
+  @Input() validationMessages: ValidationMessages = {};
+
   @Output() controlValueChange = new EventEmitter<string>();
   private userSelectedFromDropdown = false;
+
+  ngOnInit(): void {}
 
   emitSelectedItem(item: string) {
     this.controlValueChange.emit(item);

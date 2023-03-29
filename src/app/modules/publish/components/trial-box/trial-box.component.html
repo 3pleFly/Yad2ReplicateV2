@@ -1,0 +1,71 @@
+<div [ngClass]="{ container: true, highlighted_trial: trial.isReccommended }">
+  <ng-container
+    [ngTemplateOutlet]="trial.isReccommended ? recommendedRibbon : null"
+  ></ng-container>
+  <section class="top_area">
+    <img [src]="trial.imgSrc" />
+    <h2>{{ trial.name }}</h2>
+    <div class="seperator"></div>
+  </section>
+  <section class="traits">
+    <ul>
+      <li *ngFor="let trait of trial.traits; let i = index">
+        <span
+          [ngClass]="
+            trait.polarity === 'positive' ? 'pos_trait_icon' : 'neg_trait_icon'
+          "
+        ></span>
+        <span
+          [ngClass]="{
+            trait_neg_name: trait.polarity === 'negative',
+            trait_bold: isBold(i)
+          }"
+          >{{ trait.name }}</span
+        >
+      </li>
+    </ul>
+  </section>
+  <section class="price_duration_area">
+    <div class="price_and_duration">
+      <div class="price">
+        {{
+          trial.price === 0
+            ? local.step7_basic_priceFree
+            : (trial.price | currency : "ILS")
+        }}
+      </div>
+
+      <ng-container
+        *ngTemplateOutlet="
+          durationTemplate || defaultDuration;
+          context: { $implicit: trial }
+        "
+      ></ng-container>
+    </div>
+    <button
+      [ngClass]="{
+        'select-trial-btn': true,
+        'recommended-btn': trial.isReccommended
+      }"
+      (click)="emitSelectTrial(trial)"
+    >
+      {{
+        trial.isReccommended
+          ? local.step7_btn_selectRecommmendedTrial
+          : local.step7_btn_selectTrial
+      }}
+    </button>
+  </section>
+</div>
+
+<ng-template #defaultDuration>
+  <div class="duration">
+    {{ trial.duration !== 0 ? trial.duration + " ימים" : "-" }}
+  </div>
+</ng-template>
+
+<ng-template #recommendedRibbon>
+  <div class="recommended_ribbon">
+    <img [src]="recommendedRibbonSvg" />
+  </div>
+</ng-template>

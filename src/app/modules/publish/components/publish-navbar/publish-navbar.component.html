@@ -5,13 +5,13 @@
   </section>
   <section class="left">
     <div class="user">
-      <ng-container *ngIf="user$ | async as user">
+      <ng-container *ngIf="user">
         <img [src]="activeUser" alt="my account" />
         <span>{{ user.userName }}</span>
       </ng-container>
     </div>
-    <span class="contact">{{ local.navbar_contact }}</span>
-    <button *ngIf="currentStep !== 0" class="colorless-btn exit" (click)="exit()">
+    <span class="contact colorless-btn">{{ local.navbar_contact }}</span>
+    <button *ngIf="currentStep !== 0" class="colorless-btn" routerLink="/main">
       {{ local.selectCategory_btn_exit }}
     </button>
   </section>

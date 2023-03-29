@@ -28,7 +28,6 @@ export class TokenService {
       if (tokenExpirationDate > now) return false;
     }
     console.log('token is expired');
-
     return true;
   }
 

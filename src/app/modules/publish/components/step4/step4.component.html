@@ -3,4 +3,82 @@
     [index]="stepData.index"
     [title]="stepData.showcaseTitle"
   ></app-seven-step-form-title>
+  <div class="publish_realestate_showcase">
+    <ul class="publish_realestate_form_section">
+      <li>
+        <app-form-control
+          [control]="form.controls.squareMeter"
+          [label]="local.step4_label_inputSquareMeter"
+          [placeholder]="local.step4_placeholder_inputSquareMeter"
+          [maxLength]="9"
+          [useNumberPipe]="true"
+        ></app-form-control>
+      </li>
+      <li>
+        <app-form-control
+          [control]="form.controls.gardenSquareMeter"
+          [label]="local.step4_label_inputSquareMeterGarden"
+          [maxLength]="9"
+          [useNumberPipe]="true"
+        ></app-form-control>
+      </li>
+      <li>
+        <app-form-control
+          [control]="form.controls.totalSquareMeter"
+          [label]="local.step4_label_inputTotalSquareMeter"
+          [required]="true"
+          [maxLength]="9"
+          [useNumberPipe]="true"
+          [validationMessages]="requiredValidationMessage"
+          (onInputEvent)="onTotalSquareMeterOrPriceInput($event)"
+        ></app-form-control>
+      </li>
+      <li class="price_control">
+        <app-form-control
+          [control]="form.controls.price"
+          [label]="local.step4_label_inputPrice"
+          [placeholder]="local.step4_placholder_inputPrice"
+          [maxLength]="15"
+          [useNumberPipe]="true"
+          (onInputEvent)="onTotalSquareMeterOrPriceInput($event)"
+        >
+          <div class="form_control_icon" icon>₪</div>
+        </app-form-control>
+      </li>
+      <li class="price_per_meter_control">
+        <app-form-control
+          [control]="form.controls.pricePerMeter"
+          [label]="local.step4_label_inputPricePerMeter"
+          [useNumberPipe]="true"
+        >
+          <div class="form_control_icon" icon>₪</div>
+        </app-form-control>
+      </li>
+      <li class="date_control">
+        <app-form-control
+          [control]="form.controls.entryDate"
+          [label]="local.step4_label_inputEntryDate"
+          [type]="'date'"
+          [required]="true"
+          [validationMessages]="requiredValidationMessage"
+        ></app-form-control>
+        <div class="date_checkmarks">
+          <app-checkmark-control
+            [checkmark]="immediateEntryCheckmark"
+            [control]="form.controls.isImmediateEntryDate"
+            (marked)="onMarkIsImmediateEntryDate($event)"
+          ></app-checkmark-control>
+          <app-checkmark-control
+            [checkmark]="flexibleEntryCheckmark"
+            [control]="form.controls.isFlexibleEntryDate"
+            (marked)="onMarkIsFlexibleEntryDate($event)"
+          ></app-checkmark-control>
+        </div>
+      </li>
+    </ul>
+    <app-form-nav-buttons
+      (nextStep)="submit()"
+      (prevStep)="prevStep()"
+    ></app-form-nav-buttons>
+  </div>
 </section>

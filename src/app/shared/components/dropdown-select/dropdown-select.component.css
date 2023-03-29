@@ -46,7 +46,16 @@
   justify-content: space-between;
   align-items: center;
   padding: 2px;
-  height: 100%;
+  height: var(--input-height);
+}
+
+.red-border {
+  border-color: red !important;
+}
+
+
+app-validation-error {
+  --font-weight: 400;
 }
 
 .flip_arrow {
@@ -54,6 +63,7 @@
 }
 
 .options {
+  display: block;
   position: absolute;
   top: 100%;
   width: 100%;
@@ -67,17 +77,16 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   max-height: 26.25rem;
   z-index: 2;
-  display: block;
 }
 
 .options li {
   cursor: pointer;
-  padding: 5px 12px;
-  height: 42px;
-  font-size: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 5px 12px;
+  height: 42px;
+  font-size: 100%;
 }
 
 .options li:hover {

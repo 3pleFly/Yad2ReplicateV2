@@ -1,0 +1,32 @@
+:host {
+}
+
+.container {
+  background: var(--isabelline);
+  padding: 10px 5px 5px 5px;
+  border-radius: 10px;
+}
+
+.container h5 {
+  margin: 0;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.upload-btn {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 2px dashed var(--pastelGray);
+  font-size: .75rem;
+  color: var(--spanishGray);
+  width: 245px;
+  height: 235px;
+  border-radius: 10px;
+
+}

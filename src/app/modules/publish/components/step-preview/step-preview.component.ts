@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { LocalisationService } from 'src/app/core/services/localisation.service';
-import { PublishRealestateService } from '../../services/publish-realestate.service';
+import { RealestateDataService } from '../../services/publish-realestate.service';
 
 @Component({
   selector: 'app-step-preview',
@@ -28,7 +28,7 @@ import { PublishRealestateService } from '../../services/publish-realestate.serv
 export class StepPreviewComponent {
   constructor(
     private localService: LocalisationService,
-    private realesateService: PublishRealestateService
+    private realesateService: RealestateDataService
   ) {}
   @Input() title!: string;
   @Input() index!: number;

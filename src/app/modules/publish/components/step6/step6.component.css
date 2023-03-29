@@ -1,0 +1,73 @@
+:host {
+}
+
+.description {
+  font-size: 14px;
+  margin-bottom: 25px;
+  display: block;
+}
+
+app-divider {
+  max-width: 605px;
+  margin: 30px 0;
+}
+
+.user_inputs {
+  --label-font-size: 14px;
+  --label-font-weight: 500;
+}
+
+.secondary_contact_btn {
+  font-size: 14px;
+  margin-bottom: 40px;
+  color: var(--yad2Orange);
+}
+
+.secondary_contact_btn > button {
+  font-weight: 400;
+  padding: 0;
+  margin-right: 5px;
+}
+
+.virtualnumber_and_weekendcalls {
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+
+.virtualnumber_and_weekendcalls > * {
+  margin-bottom: 20px;
+  display: block;
+  width: fit-content;
+}
+
+.accept_terms_section {
+  font-size: 14px;
+  display: block;
+  width: 250px;
+}
+
+.accept_terms_section > * {
+  margin-bottom: 25px;
+  display: block;
+  --label-padding: 10px;
+}
+
+.terms_checkmark {
+  --label-background: var(--snow);
+  width: fit-content;
+}
+
+
+app-form-nav-buttons {
+  margin-top: 40px;
+}
+
+.checkmark_caption {
+  margin-right: 20px;
+  margin-top: 2px;
+  color: var(--spanishGray);
+}
+
+app-form-control {
+  --input-height: 45px;
+}

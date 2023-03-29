@@ -7,6 +7,14 @@ app-multiple-select-boxes {
   display: block;
 }
 
+app-exclusive-select-boxes {
+  --input-height: 45px;
+}
+
+app-dropdown-select {
+  --input-height: 45px;
+}
+
 .tlv_contract {
   display: flex;
   justify-content: space-between;

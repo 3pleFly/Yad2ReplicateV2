@@ -18,7 +18,6 @@ import { Step6Component } from './components/step6/step6.component';
 import { Step7Component } from './components/step7/step7.component';
 import { SevenStepFormTitleComponent } from './components/seven-step-form-title/seven-step-form-title.component';
 import { DropdownSelectComponent } from 'src/app/shared/components/dropdown-select/dropdown-select.component';
-import { FormDataService } from './services/form-data.service';
 import { DividerComponent } from 'src/app/shared/components/divider/divider.component';
 import { AutoCompleteDropdownComponent } from 'src/app/shared/components/dropdown-list/autocomplete-dropdown.component';
 import { FormControlComponent } from 'src/app/shared/components/form-control/form-control.component';
@@ -33,6 +32,10 @@ import { TextAreaFillbarComponent } from 'src/app/shared/components/text-area-fi
 import { TextAreaComponent } from 'src/app/shared/components/text-area/text-area.component';
 import { StepContainerComponent } from './components/step-container/step-container.component';
 import { StepHostDirective } from './directives/step-host.directive';
+import { UploadBoxComponent } from './components/upload-box/upload-box.component';
+import { TrialBoxComponent } from './components/trial-box/trial-box.component';
+import { RealestateFormService } from './services/realestate-form-data.service';
+import { Yad2TranslationPipe } from 'src/app/shared/pipes/translate.pipe';
 
 const routes: Routes = [
   {
@@ -58,9 +61,11 @@ const routes: Routes = [
     Step7Component,
     SevenStepFormTitleComponent,
     FormNavButtonsComponent,
-    StepHostDirective
+    StepHostDirective,
+    UploadBoxComponent,
+    TrialBoxComponent
   ],
-  providers: [TokenInterceptorProvider, FormDataService, Yad2ApisProvider],
+  providers: [TokenInterceptorProvider, Yad2ApisProvider, RealestateFormService],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -76,6 +81,7 @@ const routes: Routes = [
     MultipleSelectBoxesComponent,
     TextAreaFillbarComponent,
     TextAreaComponent,
+    Yad2TranslationPipe
   ],
 })
 export default class PublishModule {}

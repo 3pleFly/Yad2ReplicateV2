@@ -14,9 +14,9 @@
     [formControl]="control"
     [readOnly]="readonly"
     (blur)="onBlur($event)"
-    (change)="onChange($event)"
+    (input)="onInput($event)"
     (keyup)="onKeyUp($event)"
-    #input
+    [maxlength]="maxLength"
   />
   <ng-template [ngIf]="usePasswordIcon">
     <img
@@ -25,6 +25,7 @@
       (click)="togglePasswordInput()"
     />
   </ng-template>
+  <ng-content select="[icon]"></ng-content>
 </label>
 <span
   *ngIf="caption"

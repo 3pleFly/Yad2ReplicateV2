@@ -1,12 +1,18 @@
 <label
   class="label"
   (click)="toggleDropdownView($event)"
+  (focusout)="closeDropdown($event)"
   tabindex="-1"
 >
   <div class="label_text">{{ label | requiredAsterisk : required }}</div>
-  <div class="control">
+  <div
+    [ngClass]="{
+      control: true,
+      'red-border': controlDirty && controlTouched && controlInvalid
+    }"
+  >
     <input
-      [value]="inputValue"
+      [value]="inputValue | yad2Translate : translatonSrc"
       readonly
       [placeholder]="placeholder"
       type="text"
@@ -20,7 +26,7 @@
     <ul class="options">
       <li (click)="markOption(option, $event)" *ngFor="let option of options">
         <span>
-          {{ option }}
+          {{ option | yad2Translate : translatonSrc }}
         </span>
         <img
           *ngIf="selectedOption === option"
@@ -30,4 +36,10 @@
       </li>
     </ul>
   </ng-template>
+  <app-validation-error
+    [controlErrors]="controlErrors"
+    [touched]="controlTouched"
+    [dirty]="controlDirty"
+    [validationMessages]="validationMessages"
+  ></app-validation-error>
 </label>

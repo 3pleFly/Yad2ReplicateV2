@@ -1,7 +1,9 @@
 :host {
-display: block;
-background-color: #fff;
-padding: 10px 20px;
+  display: block;
+  background-color: #fff;
+  padding: 10px 20px;
+  border-top: 5px solid var(--yad2Orange);
+  box-shadow: 0 3px 10px 0 rgba(0,0,0,.1);;
 }
 
 nav {
@@ -26,7 +28,9 @@ nav section {
 
 .contact {
   cursor: pointer;
-  margin: 0 16px;
+  display: grid;
+  place-content: center;
+  margin-left: 15px
 }
 
 .user {

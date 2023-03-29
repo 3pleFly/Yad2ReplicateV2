@@ -35,7 +35,13 @@ export const images = {
       roommates: 'assets/pictures/publish/step1/roommates.png',
       commercial: 'assets/pictures/publish/step1/commercial.png',
     },
+    step7: {
+      kiteSvg: 'assets/pictures/publish/step7/kite.svg',
+      rocketSvg: 'assets/pictures/publish/step7/rocket.svg',
+      recommendedRibbon: 'assets/pictures/publish/step7/highly_recommended.svg',
+    },
     editStepIcon: 'assets/pictures/publish/edit-icon.png',
+    uploadSvg: 'assets/pictures/publish/media_uploads.svg'
   },
   activeUser: '/assets/pictures/main/active_user.png',
   propertyFeatures: {

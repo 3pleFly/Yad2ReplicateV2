@@ -1,40 +1,23 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Yad2Board } from '../../models/board.type';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RealestateCategory } from '../../models/realestate-category.type';
-import { PublishRealestateService } from '../../services/publish-realestate.service';
+import { RealestateDataService } from '../../services/publish-realestate.service';
 import { Step1Component } from '../step1/step1.component';
 
 @Component({
   selector: 'app-publish-realestate',
   templateUrl: './publish-realestate.component.html',
   styleUrls: ['./publish-realestate.component.css'],
-  providers: [PublishRealestateService],
+  providers: [RealestateDataService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PublishRealestateComponent {
-  constructor(private realestateService: PublishRealestateService) {}
+  constructor(private realestateService: RealestateDataService) {}
 
   sevenSteps = this.realestateService.sevenSteps;
 
-  step1 = Step1Component
+  step1 = Step1Component;
 
   formData = {};
-
-  setYad2Board(board: Yad2Board) {
-    switch (board) {
-      case 'realestate':
-        this.activateRealestateBoardForm();
-        break;
-
-      default:
-        return;
-    }
-  }
 
   get values() {
     return Object.values(this.sevenSteps);

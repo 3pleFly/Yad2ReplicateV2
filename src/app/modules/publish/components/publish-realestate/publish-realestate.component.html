@@ -1,7 +1,6 @@
 <app-publish-navbar [currentStep]="CurrentStep"></app-publish-navbar>
 <app-select-ad-category
   *ngIf="CurrentStep === 0; else sevenStepsTemplate"
-  (nextStep)="setYad2Board($event)"
 ></app-select-ad-category>
 <ng-template #sevenStepsTemplate>
   <main class="seven_steps">

@@ -1,6 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, ValidationErrors } from '@angular/forms';
+import { ValidationErrors } from '@angular/forms';
 import { ValidationMessages } from '../../models/validation-messages.interface';
 
 @Component({
@@ -8,21 +13,23 @@ import { ValidationMessages } from '../../models/validation-messages.interface';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <ng-container *ngIf="dirty && touched">
-      <ul class="validation_errors">
-        <li *ngFor="let error of controlErrors | keyvalue">
-          <span>{{ validationMessages[error.key] }}</span>
-        </li>
-        <li *ngFor="let error of formErrors | keyvalue">
-          <span>{{ validationMessages[error.key] }}</span>
-        </li>
-      </ul>
+    <ng-container *ngIf="(formErrors || controlErrors) && validationMessages">
+      <ng-container *ngIf="dirty && touched">
+        <ul class="validation_errors">
+          <li *ngFor="let error of controlErrors | keyvalue">
+            <span>{{ validationMessages[error.key] }}</span>
+          </li>
+          <li *ngFor="let error of formErrors | keyvalue">
+            <span>{{ validationMessages[error.key] }}</span>
+          </li>
+        </ul>
+      </ng-container>
     </ng-container>
   `,
   styleUrls: ['./validation-error.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ValidationErrorComponent {
+export class ValidationErrorComponent implements OnInit {
   constructor() {}
 
   @Input() touched: boolean = false;
@@ -30,4 +37,6 @@ export class ValidationErrorComponent {
   @Input() validationMessages!: ValidationMessages;
   @Input() formErrors!: ValidationErrors | null;
   @Input() controlErrors!: ValidationErrors | null;
+
+  ngOnInit(): void {}
 }

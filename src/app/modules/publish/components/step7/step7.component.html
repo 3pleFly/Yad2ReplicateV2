@@ -3,4 +3,33 @@
     [index]="stepData.index"
     [title]="stepData.showcaseTitle"
   ></app-seven-step-form-title>
+  <div class="publish_realestate_showcase">
+    <span class="description">{{ local.step7_description1 }}</span>
+    <app-divider></app-divider>
+    <span class="description">{{ local.step7_description2 }}</span>
+    <section class="trials">
+      <app-trial-box
+        [trial]="trials.basic"
+        (selectTrial)="onSelectTrial($event)"
+      ></app-trial-box>
+      <app-trial-box
+        [trial]="trials.extraHighlighted"
+        [boldTraitIndexes]="extraHighlightedBoldTraits"
+        (selectTrial)="onSelectTrial($event)"
+      >
+        <ng-template #duration let-trial>
+          <div class="trial_special_duration">
+            {{ "עכשיו בתוקף חדש! " + trial.duration + " ימים" }}
+          </div>
+        </ng-template>
+      </app-trial-box>
+      <app-trial-box
+        [trial]="trials.highlighted"
+        (selectTrial)="onSelectTrial($event)"
+      ></app-trial-box>
+    </section>
+    <app-checkmark-control
+      [checkmark]="acceptAdsCheckmark"
+    ></app-checkmark-control>
+  </div>
 </section>

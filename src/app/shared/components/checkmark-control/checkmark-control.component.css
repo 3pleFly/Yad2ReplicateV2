@@ -16,7 +16,7 @@
   font-size: 100%;
 }
 
-.input:hover {
+.input:hover:not(:disabled) {
   border-color: var(--yad2Orange);
 }
 
@@ -36,6 +36,11 @@
   border: 1px solid var(--yad2Orange);
 }
 
+.input:disabled {
+  cursor: not-allowed;
+  opacity: .3;
+}
+
 .indeterminate-icon::before {
   content: "-";
   font-size: 14px;
@@ -49,16 +54,24 @@
 }
 
 label {
+  border-radius: 5px;
   display: flex;
   align-items: center;
   cursor: pointer;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  background-color: var(--label-background);
+  padding: var(--label-padding);
+  gap: 5px;
 }
 
 label > span {
   margin-right: 5px;
   font-size: var(--label-font-size);
+}
 
+.disabled {
+  color: var(--spanishGray);
+  cursor: not-allowed;
 }

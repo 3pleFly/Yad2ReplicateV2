@@ -77,7 +77,6 @@ export default class AuthFormComponent implements OnInit {
       .subscribe({
         next: () => {
           this.responseMessageService.emitMessage(this.local.loginSuccessful);
-          this
           setTimeout(() => this.successfulLoginRoute(), 1500);
         },
         error: (err: Yad2Response) => {

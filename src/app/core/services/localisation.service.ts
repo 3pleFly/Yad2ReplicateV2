@@ -10,12 +10,13 @@ import { propertyTypes } from 'src/assets/localization/property-types';
 import { publish } from 'src/assets/localization/publish';
 import { propertyStates } from 'src/assets/localization/property-states';
 import { propertyFeatures } from 'src/assets/localization/property-features';
-
 @Injectable({
   providedIn: 'root',
 })
 export class LocalisationService {
   constructor() {}
+
+  getTranslation(value: string) {}
 
   get auth() {
     return auth;
@@ -51,31 +52,31 @@ export class LocalisationService {
 
   get allPropertyTypes() {
     return [
-      propertyTypes.apartment,
-      propertyTypes.garden_apartment,
-      propertyTypes.privateHouseOrCottege,
-      propertyTypes.roofOrPenthouse,
-      propertyTypes.lots,
-      propertyTypes.duplex,
-      propertyTypes.vacation_apartment,
-      propertyTypes.townhouse,
-      propertyTypes.basement,
-      propertyTypes.triplex,
-      propertyTypes.unit,
-      propertyTypes.agricultural_farm,
-      propertyTypes.farm,
-      propertyTypes.assisted_living,
-      propertyTypes.building,
-      propertyTypes.studio,
-      propertyTypes.storage,
-      propertyTypes.parking,
-      propertyTypes.purchasingGroup,
-      propertyTypes.general,
+      propertyTypes['apartment'],
+      propertyTypes['garden_apartment'],
+      propertyTypes['privateHouseOrCottege'],
+      propertyTypes['roofOrPenthouse'],
+      propertyTypes['lots'],
+      propertyTypes['duplex'],
+      propertyTypes['vacation_apartment'],
+      propertyTypes['townhouse'],
+      propertyTypes['basement'],
+      propertyTypes['triplex'],
+      propertyTypes['unit'],
+      propertyTypes['agricultural_farm'],
+      propertyTypes['farm'],
+      propertyTypes['assisted_living'],
+      propertyTypes['building'],
+      propertyTypes['studio'],
+      propertyTypes['storage'],
+      propertyTypes['parking'],
+      propertyTypes['purchasingGroup'],
+      propertyTypes['general'],
     ];
   }
 
-  get allPropertyStates() {
-    return Object.values(propertyStates);
+  get propertyStates() {
+    return propertyStates;
   }
 
   get main() {

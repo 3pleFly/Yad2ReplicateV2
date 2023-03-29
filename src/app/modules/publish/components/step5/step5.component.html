@@ -3,4 +3,12 @@
     [index]="stepData.index"
     [title]="stepData.showcaseTitle"
   ></app-seven-step-form-title>
+  <div class="publish_realestate_showcase">
+    <span class="description">{{ local.step5_description }}</span>
+    <section class="upload">
+      <app-upload-box [title]="local.step5_label_uploadVideo"></app-upload-box>
+      <app-upload-box [title]="local.step5_label_uploadPicture"></app-upload-box>
+    </section>
+    <app-form-nav-buttons (nextStep)="nextStep()" (prevStep)="prevStep()"></app-form-nav-buttons>
+  </div>
 </section>

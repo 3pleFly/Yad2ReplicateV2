@@ -21,7 +21,7 @@ export class AuthService {
         password: credentials.password,
       })
       .pipe(
-        tap((r) => this.tokenService.saveToken(r.data)),
+        tap((r) => this.tokenService.saveToken(r.data.token)),
         tap((_) => this.sessionService.setSession())
       );
   }

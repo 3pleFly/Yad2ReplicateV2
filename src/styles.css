@@ -1,17 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;800;900&display=swap');
-@import 'assets/styles/variables.css';
-@import 'assets/styles/publish-realestate.css';
-@import 'assets/styles/inputs.css';
-@import 'assets/styles/buttons.css';
-@import 'assets/styles/errors.css';
-@import '~font-awesome/css/font-awesome.css';
-
-
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;800;900&display=swap");
+@import "assets/styles/variables.css";
+@import "assets/styles/publish-realestate.css";
+@import "assets/styles/inputs.css";
+@import "assets/styles/buttons.css";
+@import "assets/styles/errors.css";
+@import "~font-awesome/css/font-awesome.css";
 
 * {
   box-sizing: border-box;
   direction: rtl;
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 
 body {
@@ -29,4 +27,16 @@ ul {
 
 .disabled_text_color {
   color: #cccccc !important;
+}
+
+.form_control_icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

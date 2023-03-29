@@ -10,25 +10,31 @@
           [label]="local.step3_label_selectRooms"
           [options]="local.step3_options_selectRooms"
           [placeholder]="local.step3_placeholder_selectRooms"
+          (select)="onSelectRooms($event)"
         ></app-dropdown-select>
       </li>
       <li>
         <app-exclusive-select-boxes
           [label]="local.step3_label_selectParking"
           [options]="local.setep3_options_selectParking"
+          (select)="onSelectParking($event)"
         ></app-exclusive-select-boxes>
       </li>
       <li>
         <app-exclusive-select-boxes
           [label]="local.step3_label_selectBalcony"
           [options]="local.setep3_options_selectBalcony"
+          (select)="onSelectBalconies($event)"
         ></app-exclusive-select-boxes>
       </li>
     </ul>
     <app-divider></app-divider>
     <app-multiple-select-boxes
       [label]="local.step3_label_propertyFeatures"
-      [(options)]="propertyFeaturesBoxes"
+      [options]="propertyFeatures$ | async"
+      [imgSrcs]="propertyFeaturesImgSrc"
+      [localisationSrc]="propertyFeaturesLocalisation"
+      (optionsChange)="onSelectPropertyFeature($event)"
     ></app-multiple-select-boxes>
     <section class="tlv_contract">
       <div>
@@ -47,7 +53,7 @@
     <section class="form_description">
       <h3>{{ local.step3_header_description }}</h3>
       <app-text-area
-        *ngIf="isFurniturePropertyFeatureMarked()"
+        *ngIf="furnitureDescriptionBoxView"
         [label]="local.step3_label_furnitureDescription"
         [counterSum]="200"
       ></app-text-area>
@@ -57,11 +63,12 @@
         [messages]="textAreaProgressBarMessage"
         [bottomCaption]="local.step3_label_caption2_description"
         [fillbarSum]="400"
+        (inputEvent)="onDescriptionInput($event)"
       ></app-text-area-fillbar>
     </section>
     <section>
       <app-form-nav-buttons
-        (nextStep)="nextStep()"
+        (nextStep)="submit()"
         (prevStep)="prevStep()"
       ></app-form-nav-buttons>
     </section>

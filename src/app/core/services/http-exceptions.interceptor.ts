@@ -9,6 +9,7 @@ import {
 import { catchError, Observable, throwError } from 'rxjs';
 import { Yad2ErrorResponse } from '../models/yad2-response.interface';
 import { LocalisationService } from './localisation.service';
+import { convertToYad2ErrorResponse, isYad2ErrorResponse } from '../helpers/functions.helpers';
 
 @Injectable()
 export class HttpExceptionsInterceptor implements HttpInterceptor {
@@ -34,14 +35,15 @@ export class HttpExceptionsInterceptor implements HttpInterceptor {
   }
 
   handleError(err: HttpErrorResponse): Yad2ErrorResponse {
-    if (!Yad2ErrorResponse.isYad2ErrorResponse(err.error))
+    if (!isYad2ErrorResponse(err.error))
       return {
         message: this.local.serverSideError,
         success: false,
         data: null,
+        code: ""
       };
 
-    let yad2Error = Yad2ErrorResponse.convertToYad2ErrorResponse(err.error);
+    let yad2Error = convertToYad2ErrorResponse(err.error);
 
     switch (yad2Error.code) {
       case 'BAD_CREDENTIALS':

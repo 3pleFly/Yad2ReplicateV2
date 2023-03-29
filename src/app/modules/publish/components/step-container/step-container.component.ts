@@ -1,16 +1,16 @@
 import {
   ChangeDetectorRef,
   Component,
-  createEnvironmentInjector,
   Injector,
   Input,
-  OnInit,
   ViewChild,
 } from '@angular/core';
-import { PublishRealestateService } from '../../services/publish-realestate.service';
+import { RealestateDataService } from '../../services/publish-realestate.service';
 import { StepData } from '../../models/step-data.interface';
 import { StepHostDirective } from '../../directives/step-host.directive';
 import { BaseStep } from '../../directives/base-step.directive';
+import { LocalisationService } from 'src/app/core/services/localisation.service';
+import { RealestateFormService } from '../../services/realestate-form-data.service';
 
 @Component({
   selector: 'app-step-container',
@@ -22,14 +22,15 @@ import { BaseStep } from '../../directives/base-step.directive';
       [currentStep]="currentStep"
     ></app-step-preview>
     <ng-template #showcase>
-      <p>?</p>
       <ng-template stepHost></ng-template>
     </ng-template>
   `,
 })
-export class StepContainerComponent  {
+export class StepContainerComponent {
   constructor(
-    private realestateService: PublishRealestateService,
+    private realestateService: RealestateDataService,
+    private formDataService: RealestateFormService,
+    private localService: LocalisationService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -46,10 +47,11 @@ export class StepContainerComponent  {
     const injector = Injector.create({
       providers: [
         {
-          provide: PublishRealestateService,
+          provide: RealestateDataService,
           useValue: this.realestateService,
         },
         { provide: StepData, useValue: this.stepData },
+        { provide: RealestateFormService, useValue: this.formDataService },
       ],
     });
     const componentRef = stepHost.viewContainerRef.createComponent<BaseStep>(

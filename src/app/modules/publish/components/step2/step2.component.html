@@ -10,8 +10,15 @@
         <app-dropdown-select
           [label]="local.step2_label_selectPropertyType"
           [placeholder]="local.step2_placeholder_selectPropertyType"
-          [options]="propertyTypesOptions"
+          [options]="propertyTypesOptions$ | async"
+          [translatonSrc]="propertyTypesLocalisation"
           [required]="true"
+          [controlDirty]="form.controls.propertyTypeId.dirty"
+          [controlInvalid]="form.controls.propertyTypeId.invalid"
+          [controlTouched]="form.controls.propertyTypeId.touched"
+          [controlErrors]="form.controls.propertyTypeId.errors"
+          [validationMessages]="requiredValidationMessage"
+          (select)="onSelectPropertyType($event)"
         >
         </app-dropdown-select>
       </li>
@@ -19,8 +26,15 @@
         <app-dropdown-select
           [label]="local.step2_label_selectPropertyState"
           [placeholder]="local.step2_placeholder_selectPropertyState"
-          [options]="propertyStatesOptions"
+          [options]="propertyStatesOptions$ | async"
+          [translatonSrc]="propertyStatesLocalisation"
           [required]="true"
+          [controlDirty]="form.controls.propertyStateId.dirty"
+          [controlInvalid]="form.controls.propertyStateId.invalid"
+          [controlTouched]="form.controls.propertyStateId.touched"
+          [controlErrors]="form.controls.propertyStateId.errors"
+          [validationMessages]="requiredValidationMessage"
+          (select)="onSelectPropertyState($event)"
         ></app-dropdown-select>
       </li>
     </ul>
@@ -34,6 +48,7 @@
           [dataList]="cityDataList$ | async"
           (controlValueChange)="onSelectCity($event)"
           [required]="true"
+          [validationMessages]="requiredValidationMessage"
         ></app-autocomplete-dropdown>
       </li>
       <li *ngIf="streetControlView">
@@ -44,27 +59,44 @@
           [dataList]="streetDataList$ | async"
           (controlValueChange)="onSelectStreet($event)"
           [required]="true"
+          [validationMessages]="requiredValidationMessage"
         ></app-autocomplete-dropdown>
       </li>
-      <li>
+      <li class="houseNum">
+        <app-form-control
+          [control]="form.controls.houseNum"
+          [label]="local.step2_label_inputHouseNum"
+          [required]="true"
+          [validationMessages]="requiredValidationMessage"
+        >
+        </app-form-control>
+      </li>
+      <li *ngIf="showFloorsSection">
         <ul class="form_sub_section">
           <li>
-            <app-common-input
-              [labelName]="local.step2_label_inputFloor"
+            <app-form-control
+              [control]="form.controls.floor"
+              [label]="local.step2_label_inputFloor"
               [placeholder]="local.step2_placeholder_inputFloor"
               [required]="floorControlRequired"
-            ></app-common-input>
+              [validationMessages]="requiredValidationMessage"
+            >
+            </app-form-control>
           </li>
           <li>
-            <app-common-input
-              [labelName]="local.step2_label_inputTotalFloors"
+            <app-form-control
+              [control]="form.controls.totalFloors"
+              [label]="local.step2_label_inputTotalFloors"
               [placeholder]="local.step2_placeholder_inputTotalFloors"
               [required]="totalFloorControlRequired"
-            ></app-common-input>
+              [validationMessages]="requiredValidationMessage"
+            >
+            </app-form-control>
           </li>
           <li>
             <app-checkmark-control
               [checkmark]="isOnColumnsCheckmark"
+              [control]="form.controls.isOnColumns"
             ></app-checkmark-control>
           </li>
         </ul>
@@ -82,7 +114,7 @@
       <li>
         <app-form-control
           [label]="local.step2_label_inputArea"
-          [control]="form.controls.area"
+          [control]="form.controls.areaOfLiving"
           [caption]="local.step2_caption_governmentInformation"
         ></app-form-control>
       </li>
@@ -93,7 +125,7 @@
       [checkmark]="monthlyEmailAdsCheckmark"
     ></app-checkmark-control>
     <app-form-nav-buttons
-      (nextStep)="nextStep()"
+      (nextStep)="submit()"
       (prevStep)="prevStep()"
     ></app-form-nav-buttons>
   </div>

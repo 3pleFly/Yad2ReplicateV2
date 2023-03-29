@@ -129,6 +129,10 @@ form {
   text-align: center;
 }
 
+app-form-control {
+  --input-height: 50px;
+}
+
 @media only screen and (max-width: 875px) {
   :host {
     width: unset;

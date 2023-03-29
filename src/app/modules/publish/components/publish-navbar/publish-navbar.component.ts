@@ -5,9 +5,10 @@ import {
   OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/core/models/user.interface';
 import { LocalisationService } from 'src/app/core/services/localisation.service';
 import { SessionService } from 'src/app/core/services/session.service';
-import { PublishRealestateService } from '../../services/publish-realestate.service';
+import { RealestateDataService } from '../../services/publish-realestate.service';
 
 @Component({
   selector: 'app-publish-navbar',
@@ -15,7 +16,7 @@ import { PublishRealestateService } from '../../services/publish-realestate.serv
   styleUrls: ['./publish-navbar.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PublishNavbarComponent {
+export class PublishNavbarComponent implements OnInit {
   constructor(
     private localService: LocalisationService,
     private sessionService: SessionService
@@ -25,7 +26,14 @@ export class PublishNavbarComponent {
   siteLogo = this.localService.main.siteLogo;
   activeUser = this.localService.images.activeUser;
   local = this.localService.publish;
-  user$ = this.sessionService.user$;
+  user!: User;
+
+  ngOnInit(): void {
+    const user = this.sessionService.user;
+    if (user) {
+      this.user = user;
+    }
+  }
 
   exit() {}
 }

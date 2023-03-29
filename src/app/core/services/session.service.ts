@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  map,
-} from 'rxjs';
+import { BehaviorSubject, map, tap } from 'rxjs';
 import { Yad2APIURL } from 'src/assets/api/api';
-import { Yad2Response } from '../models/yad2-response.interface';
+import {
+  Yad2ErrorResponse,
+  Yad2Response,
+} from '../models/yad2-response.interface';
 import { User } from '../models/user.interface';
 import { TokenService } from './token.service';
 @Injectable({
@@ -16,8 +16,8 @@ export class SessionService {
     this.setSession();
   }
 
-  private _user = new BehaviorSubject<User | null>(null);
-  public user$ = this._user.asObservable();
+  user: User | null = null;
+  isLoggedIn = false;
 
   setSession() {
     const token = this.tokenService.getToken();
@@ -27,18 +27,26 @@ export class SessionService {
     if (isTokenExpired) {
       this.tokenService.removeToken();
     }
-
-    this.getUser();
+    this.setUser();
   }
 
-  getUser() {
+  private setUser() {
     this.http
-      .get<Yad2Response>(`${Yad2APIURL}/user`)
-      .pipe(map((r) => this._user.next(<User>r.data)))
-      .subscribe();
-  }
-
-  isLoggedIn(): boolean {
-    return this.tokenService.getToken() ? true : false;
+      .get<Yad2Response>(`${Yad2APIURL}/users`)
+      .pipe(map((r) => (this.user = <User>r.data)))
+      .subscribe({
+        next: () => {
+          this.isLoggedIn = true;
+        },
+        error: (err: Yad2ErrorResponse) => {
+          if (err.code === 'ID_NOT_FOUND') {
+            console.log('Token expired, removing...');
+            this.tokenService.removeToken();
+          }
+        },
+        complete: () => {
+          console.log('You are logged in.');
+        },
+      });
   }
 }

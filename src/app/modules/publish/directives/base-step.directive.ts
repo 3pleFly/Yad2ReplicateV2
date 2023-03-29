@@ -1,19 +1,31 @@
 import { Directive } from '@angular/core';
 import { StepData } from '../models/step-data.interface';
-import { PublishRealestateService } from '../services/publish-realestate.service';
+import { RealestateFormStep } from '../models/yad2-form-data.interface';
+import { RealestateDataService } from '../services/publish-realestate.service';
+import { RealestateFormService } from '../services/realestate-form-data.service';
 
 @Directive()
-export class BaseStep {
+export abstract class BaseStep {
   constructor(
-    protected realestateService: PublishRealestateService,
-    protected stepData: StepData
+    protected realestateData: RealestateDataService,
+    protected stepData: StepData,
+    protected realestateFormService: RealestateFormService
   ) {}
 
   nextStep() {
-    this.realestateService.nextStep();
+    this.realestateData.nextStep();
   }
 
   prevStep() {
-    this.realestateService.prevStep();
+    this.realestateData.prevStep();
+  }
+
+  getFormData() {
+    return this.realestateFormService.getFormData(this.stepData.index - 1);
+  }
+
+  setFormData(stepFormData: RealestateFormStep) {
+    const key = `step${this.stepData.index}`;
+    this.realestateFormService.setFormData(key, stepFormData);
   }
 }

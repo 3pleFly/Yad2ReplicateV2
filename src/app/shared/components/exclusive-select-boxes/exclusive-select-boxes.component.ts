@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
     <span class="label">{{ label }}</span>
     <ul class="options">
       <li
-      (click)="markSelection(option)"
+        (click)="markSelection(option)"
         [ngClass]="{ selected: selectedOption === option }"
         *ngFor="let option of options"
       >
@@ -24,7 +24,7 @@ import { CommonModule } from '@angular/common';
     </ul>
   `,
   styleUrls: ['./exclusive-select-boxes.component.css'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExclusiveSelectBoxesComponent {
   @Input() options!: string[];
@@ -44,5 +44,6 @@ export class ExclusiveSelectBoxesComponent {
 
   markSelection(option: string) {
     this.selectedOption = option;
+    this.select.emit(option);
   }
 }

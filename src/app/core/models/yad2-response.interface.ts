@@ -20,14 +20,6 @@ export class Yad2Response {
   }
 }
 
-export class Yad2ErrorResponse extends Yad2Response {
-
-  static isYad2ErrorResponse(obj: any) {
-    return Yad2Response.isYad2Response(obj) && 'Code' in obj;
-  }
-
-  static convertToYad2ErrorResponse(obj: any) {
-    const yad2Resposne = Yad2Response.convertToYad2Response(obj);
-    return { ...yad2Resposne, code: obj.Code };
-  }
+export interface Yad2ErrorResponse extends Yad2Response {
+  code: string;
 }

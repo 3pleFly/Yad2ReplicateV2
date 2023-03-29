@@ -24,17 +24,14 @@ export class TextAreaFillbarComponent {
   @Input() messages!: ProgressBarMessage[];
   @Input() bottomCaption: string = '';
 
-  @Output() blurTextArea = new EventEmitter<string>();
+  @Output() inputEvent = new EventEmitter<string>();
 
   fillbarProgress = 0;
   textAreaValue: string = '';
 
-  onKeyUp() {
+  onInput() {
     this.fillbarProgress = this.textAreaValue.length;
-  }
-
-  onBlur() {
-    this.blurTextArea.emit(this.textAreaValue);
+    this.inputEvent.emit(this.textAreaValue);
   }
 
   get progressBarMessage() {

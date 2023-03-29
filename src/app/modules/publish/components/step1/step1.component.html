@@ -4,7 +4,7 @@
     [title]="stepData.showcaseTitle"
   ></app-seven-step-form-title>
   <ul class="categories">
-    <li (click)="onForsaleCategory()">
+    <li (click)="setListingCategory(1)">
       <img [src]="images.sale" />
       <div>{{ local.step1_option_forSsale }}</div>
     </li>

@@ -7,22 +7,27 @@
   font-size: 14px;
 }
 
-
-
 .publish_realestate_form_section li app-form-control {
   --label-font-size: 14px;
   --label-font-weight: 500;
+  --input-height: 45px;
 }
 
 .publish_realestate_form_section li app-autocomplete-dropdown {
   --control-label-font-size: 14px;
   --control-label-font-weight: 500;
+  --input-height: 45px;
+
 }
 
 .form_sub_section {
   display: flex;
   gap: 10px;
   height: 100%;
+}
+
+app-dropdown-select {
+  --input-height: 45px;
 }
 
 .form_sub_section li app-common-input {
@@ -49,11 +54,15 @@ app-divider {
 }
 
 .disabled_section li {
-  height: 80px;
+
 }
 
 .monthly_ads {
   margin-bottom: 50px;
   font-size: 14px;
   display: block;
+}
+
+.houseNum {
+  width: 50%;
 }

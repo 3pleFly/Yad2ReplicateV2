@@ -6,40 +6,61 @@ import {
   Output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IMultipleSelectBox } from '../../models/imultiple-select-box.interface';
-
+import { KeyValueString } from 'src/app/core/models/key-value-string.type';
+import { TranslationType } from '../../models/translation-type.interface';
+import { Yad2TranslationPipe } from "../../pipes/translate.pipe";
 @Component({
-  selector: 'app-multiple-select-boxes',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'app-multiple-select-boxes',
+    standalone: true,
+    template: `
     <span class="label_text">{{ label }}</span>
     <ul class="boxes">
       <li
-        (click)="markSelection(option)"
-        [ngClass]="{ selected: option.checkmark.state === 'checked' }"
+        (click)="toggleSelection(option)"
+        [ngClass]="{ selected: isSelected(option) }"
         *ngFor="let option of options"
       >
-        <img [src]="option.imgSrc" />
+        <ng-container *ngIf="getImgSrc(option) as imgSrc">
+          <img [src]="imgSrc" />
+        </ng-container>
         <span>
-          {{ option.checkmark.name }}
+          {{ option | yad2Translate : localisationSrc }}
         </span>
       </li>
     </ul>
   `,
-  styleUrls: ['./multiple-select-boxes.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    styleUrls: ['./multiple-select-boxes.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, Yad2TranslationPipe]
 })
 export class MultipleSelectBoxesComponent {
-  @Input() options!: IMultipleSelectBox[];
-  @Input() label: string = '';
+  @Input() options: string[] | null = null;
+  @Input() label = '';
+  @Input() imgSrcs!: KeyValueString;
+  @Input() localisationSrc!: TranslationType;
 
-  @Output() optionsChange = new EventEmitter<IMultipleSelectBox[]>();
 
-  markSelection(box: IMultipleSelectBox) {
-    box.checkmark.state =
-      box.checkmark.state === 'checked' ? 'unchecked' : 'checked';
+  @Output() optionsChange = new EventEmitter<string[]>();
 
-    this.optionsChange.emit([...this.options]);
+  selectedOptions: string[] = [];
+
+  isSelected(option: string): boolean {
+    return this.selectedOptions.includes(option);
+  }
+
+  toggleSelection(option: string) {
+    if (this.isSelected(option)) {
+      this.selectedOptions = this.selectedOptions.filter((o) => o !== option);
+    } else {
+      this.selectedOptions.push(option);
+    }
+    this.optionsChange.emit([...this.selectedOptions]);
+  }
+
+  getImgSrc(option: string) {
+    if (this.imgSrcs) {
+      return this.imgSrcs[option];
+    }
+    return null;
   }
 }
