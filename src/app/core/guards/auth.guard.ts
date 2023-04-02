@@ -1,25 +1,13 @@
-import { Inject, Injectable } from '@angular/core';
-import {
-  CanActivate,
-  Router,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { map } from 'rxjs';
 import { SessionService } from '../services/session.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthGuard implements CanActivate {
+export const authGuard = () => {
+  const router = inject(Router);
+  const sessionService = inject(SessionService);
 
-  sessionService = Inject(SessionService);
-  router = Inject(Router);
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log('??');
-
-    return this.sessionService.isLoggedIn
-      ? true
-      : this.router.navigate(['realestate-forsale']);
-  }
-}
+  return sessionService.user$.pipe(
+    map((user) => (user ? true : router.navigate(['auth'])))
+  );
+};

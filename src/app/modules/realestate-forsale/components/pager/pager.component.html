@@ -1,0 +1,39 @@
+<ul class="pager">
+  <button
+    class="prev_page nav_btn"
+    [disabled]="isPrevPageButtonDisabled()"
+    (click)="changePage(currentPage - 1)"
+  >
+  <img [src]="grayArrow" />
+    <span>
+      {{ local.btn_prevPage }}
+    </span>
+  </button>
+  <li (click)="changePage(1)" [ngClass]="{ selected_page: currentPage === 1 }">
+    <span>1</span>
+  </li>
+  <li *ngIf="showStartingElipsis()">...</li>
+  <li
+    (click)="changePage(pageIndex)"
+    [ngClass]="{ selected_page: currentPage === pageIndex }"
+    *ngFor="let pageIndex of pageNumbers"
+  >
+    <span>
+      {{ pageIndex }}
+    </span>
+  </li>
+  <li *ngIf="hideEndingElipsis()">...</li>
+  <li *ngIf="hideMaxPageIndex()" (click)="changePage(maxPageIndex)">
+    {{ maxPageIndex }}
+  </li>
+  <button
+    class="next_page nav_btn"
+    [disabled]="isNextPageButtonDisabled()"
+    (click)="changePage(currentPage + 1)"
+  >
+    <span>
+      {{ local.btn_nextPage }}
+    </span>
+    <img [src]="orangeArrow" />
+  </button>
+</ul>

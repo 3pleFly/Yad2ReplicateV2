@@ -1,0 +1,56 @@
+<div class="main_navbar">
+  <div class="right_side">
+    <img [src]="logoSvg" alt="Yad2" />
+    <ul class="boards">
+      <li>{{ local.header_realestate }}</li>
+      <li>{{ local.header_automobiles }}</li>
+      <li>{{ local.header_secondhand }}</li>
+      <li>{{ local.header_recruiting }}</li>
+      <li>{{ local.header_businessForSale }}</li>
+      <li>{{ local.header_pets }}</li>
+      <li>{{ local.header_trades }}</li>
+      <li>{{ local.header_more }}</li>
+    </ul>
+    <div class="hamburger-container">
+      <button class="hamburger-btn">
+        <div class="hamburger">
+          <img [src]="hamburgerIcon" alt="menu" />
+        </div>
+        <h2>{{ local.header_hamburger_title }}</h2>
+      </button>
+    </div>
+  </div>
+  <ul class="buttons">
+    <li class="alerts">
+      <img [src]="local.src_bell" />
+    </li>
+    <li class="favorites">
+      <img [src]="local.src_favorites" />
+    </li>
+    <li class="account">
+      <div class="user-icon">
+        <ng-container
+          *ngIf="
+            singleCharacterUsername$ | async as userAlias;
+            else defaultUserAccountIcon
+          "
+        >
+          <span>{{ userAlias }}</span>
+        </ng-container>
+
+        <ng-template #defaultUserAccountIcon>
+          <img routerLink="/auth" [src]="userIcon" />
+        </ng-template>
+      </div>
+    </li>
+    <button class="publish green-button" routerLink="/publish">
+      {{ local.btn_publishNewAd }}
+    </button>
+  </ul>
+</div>
+<ul class="listings">
+  <li>{{ local.header_forsale }}</li>
+  <li>{{ local.header_forrent }}</li>
+  <li>{{ local.header_forroommates }}</li>
+  <li>{{ local.header_commercialRealestate }}</li>
+</ul>

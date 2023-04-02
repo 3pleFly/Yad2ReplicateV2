@@ -1,0 +1,139 @@
+:host {
+  position: relative;
+  cursor: pointer;
+  display: block;
+  height: 88px;
+  border-radius: 2px 0 0 2px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #fdf9c5;
+}
+
+:host:hover {
+  box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.16);
+  z-index: 2;
+}
+
+.three-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 26% 23%;
+  height: 85px;
+}
+
+.three-col-grid:hover .last_update {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.three-col-grid:hover .click_for_details {
+  visibility: visible;
+  opacity: 100;
+}
+
+.three-col-grid:hover .new_tab_btn span {
+  visibility: visible;
+  opacity: 100;
+}
+
+.middle_col {
+  display: flex;
+  align-items: center;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  justify-content: space-around;
+  text-align: center;
+}
+
+.right_col {
+  display: flex;
+  align-items: center;
+}
+
+.left_col {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+
+.img-container {
+  width: 110px;
+  height: 66px;
+  margin: 10px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.img-container img {
+  border-radius: 5px;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.label.subtitle {
+  color: #363636;
+}
+
+.label {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.update_container {
+  width: 100%;
+  font-size: 13px;
+  position: relative;
+  padding: 0 15px;
+}
+
+.update_container span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.last_update {
+  color: rgba(0, 0, 0, 0.5);
+  visibility: visible;
+  opacity: 100;
+  display: block;
+}
+
+.click_for_details {
+  color: var(--yad2Orange);
+  font-weight: 500;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.new_tab_btn {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  cursor: pointer;
+  color: #999;
+  border: none;
+  background: none;
+  transition: all 0.3s ease;
+  font-size: 10px;
+}
+
+.new_tab_btn:hover {
+  color: #363636;
+}
+
+.new_tab_btn span {
+  visibility: none;
+  opacity: 0;
+  margin-left: 5px;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}

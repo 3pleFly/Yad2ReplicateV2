@@ -1,3 +1,5 @@
+import { realestate } from "./realestate";
+
 export const images = {
   dropdownArrow: '/assets/pictures/main/input_dropdown_arrow.png',
   dropdownArrowLight: '/assets/pictures/main/input_dropdown_arrow_light.png',
@@ -62,5 +64,16 @@ export const images = {
   },
   outsource: {
     telaviv: 'assets/pictures/outsource/tlv_logo.svg'
+  },
+  buttons: {
+    orangeArrow: 'assets/pictures/buttons/arrow_orange.png',
+    grayArrow: 'assets/pictures/buttons/arrow_gray.png',
+    hamburgerIcon: 'assets/pictures/buttons/hamburger.png',
+  },
+  realestate: {
+    imgPlaceholder: 'assets/pictures/realestate/picture_placeholder.png',
+  },
+  navigation: {
+    user: 'assets/pictures/navigation/user.png',
   }
 };

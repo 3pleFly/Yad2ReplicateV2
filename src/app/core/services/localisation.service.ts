@@ -10,6 +10,9 @@ import { propertyTypes } from 'src/assets/localization/property-types';
 import { publish } from 'src/assets/localization/publish';
 import { propertyStates } from 'src/assets/localization/property-states';
 import { propertyFeatures } from 'src/assets/localization/property-features';
+import { realestate } from 'src/assets/localization/realestate';
+import { recentlySoldBox } from 'src/assets/localization/recently-sold-box';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -22,8 +25,16 @@ export class LocalisationService {
     return auth;
   }
 
+  get recentlySoldBox() {
+    return recentlySoldBox;
+  }
+
   get publish() {
     return publish;
+  }
+
+  get realestate() {
+    return realestate;
   }
 
   get errors() {
@@ -44,6 +55,10 @@ export class LocalisationService {
 
   get propertyTypes() {
     return propertyTypes;
+  }
+
+  get y2Translatables() {
+    return { ...propertyTypes, ...propertyStates };
   }
 
   get propertyFeatures() {

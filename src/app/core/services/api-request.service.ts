@@ -1,6 +1,6 @@
-import { HttpBackend, HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { HttpBackend, HttpClient, HttpParams } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { map, Observable, switchMap, tap } from 'rxjs';
 import { GovtAPIData } from 'src/app/modules/publish/models/govt-api.interface';
 import { PropertyAdDto } from 'src/app/modules/publish/models/property-ad-dto.interface';
 
@@ -9,23 +9,26 @@ import {
   GovtAPi_QueryStreet,
   Yad2APIURL,
 } from 'src/assets/api/api';
+import { User } from '../models/user.interface';
 import { Yad2Response } from '../models/yad2-response.interface';
 import { Yad2Resource } from '../models/yad2resource.interface';
-import { SessionService } from './session.service';
+
 @Injectable({ providedIn: 'root' })
 export class ApiRequestService {
-  private noInterceptorsHttpClient: HttpClient;
+  private _http = inject(HttpClient);
+  private _handler = inject(HttpBackend);
+  private _noInterceptorsHttpClient = new HttpClient(this._handler);
 
-  constructor(
-    private http: HttpClient,
-    private sessionService: SessionService,
-    handler: HttpBackend
-  ) {
-    this.noInterceptorsHttpClient = new HttpClient(handler);
+  getPropertyDtos(limit = 10, offset = 0) {
+    const params = new HttpParams().set('limit', limit).set('offset', offset);
+
+    return this._http.get<Yad2Response>(`${Yad2APIURL}/properties`, {
+      params: params,
+    });
   }
 
   getCities(cityQuery: string): Observable<string[]> {
-    return this.noInterceptorsHttpClient
+    return this._noInterceptorsHttpClient
       .get<GovtAPIData>(`${GovtAPi_QueryCity}${cityQuery}`)
       .pipe(
         map((v) => v.result.records.map((record) => record.שם_ישוב)),
@@ -34,7 +37,7 @@ export class ApiRequestService {
   }
 
   getStreets(cityQuery: string, streetQuery: string): Observable<string[]> {
-    return this.noInterceptorsHttpClient
+    return this._noInterceptorsHttpClient
       .get<GovtAPIData>(`${GovtAPi_QueryStreet}${cityQuery},${streetQuery}`)
       .pipe(
         map((v) => v.result.records.map((record) => record.שם_רחוב)),
@@ -43,28 +46,33 @@ export class ApiRequestService {
   }
 
   getPropertyFeatures(): Observable<Yad2Resource[]> {
-    return this.http
+    return this._http
       .get<Yad2Response>(`${Yad2APIURL}/propertyfeatures`)
       .pipe(map((r) => r.data as Yad2Resource[]));
   }
 
   getPropertyTypes(): Observable<Yad2Resource[]> {
-    return this.http
+    return this._http
       .get<Yad2Response>(`${Yad2APIURL}/propertytypes`)
       .pipe(map((r) => r.data as Yad2Resource[]));
   }
 
   getPropertyStates(): Observable<Yad2Resource[]> {
-    return this.http
+    return this._http
       .get<Yad2Response>(`${Yad2APIURL}/propertystates`)
       .pipe(map((r) => r.data as Yad2Resource[]));
   }
 
-  postNewPropertyAd(propertyAdDto: PropertyAdDto) {
-    const user = this.sessionService.user;
-    if (!user) throw new Error('User is not logged in');
+  postNewPropertyAd(propertyAdDto: PropertyAdDto, user: User) {
+    return this._http.post(
+      `${Yad2APIURL}/users/${user.id}/properties`,
+      propertyAdDto
+    );
+  }
 
-    const userId = user.id;
-    return this.http.post(`${Yad2APIURL}/users/${userId}/properties`, propertyAdDto);
+  getCountPropertyAds(): Observable<number> {
+    return this._http
+      .get<Yad2Response>(`${Yad2APIURL}/properties/count`)
+      .pipe(map((y2r) => <number>y2r.data));
   }
 }

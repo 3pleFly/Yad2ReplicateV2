@@ -1,3 +1,4 @@
+import { inject } from '@angular/core';
 import {
   Observable,
   OperatorFunction,
@@ -6,11 +7,30 @@ import {
   switchMap,
   iif,
   of,
+  map,
 } from 'rxjs';
 import { Yad2Response } from '../models/yad2-response.interface';
+import { LocalisationService } from '../services/localisation.service';
 
 export function isNonNull<T>(value: T): value is NonNullable<T> {
   return value !== null;
+}
+
+export function yad2Translate(): OperatorFunction<
+  string | null | undefined,
+  string | null
+> {
+  const localService = inject(LocalisationService);
+
+  return (source$) =>
+    source$.pipe(
+      map((y2Name) => {
+        if (!y2Name) return null;
+        if (!(y2Name in localService.y2Translatables)) return null;
+
+        return localService.y2Translatables[y2Name];
+      })
+    );
 }
 
 export function autoCompleteSearch<T>(

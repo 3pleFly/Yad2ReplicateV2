@@ -13,7 +13,7 @@ export class PropertyAdDto {
   houseNum!: string;
   neighborhood!: string;
   areaOfLiving!: string;
-  floors!: number;
+  floor!: number;
   totalFloors!: number;
   isOnColumns!: boolean;
 

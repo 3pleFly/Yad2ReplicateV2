@@ -1,5 +1,6 @@
 import { Injectable, Optional } from '@angular/core';
 import { Router } from '@angular/router';
+import { switchMap } from 'rxjs';
 import { ApiRequestService } from 'src/app/core/services/api-request.service';
 import { SessionService } from 'src/app/core/services/session.service';
 import { PropertyAdDto } from '../models/property-ad-dto.interface';
@@ -70,15 +71,27 @@ export class RealestateFormService {
     const result = this.validatePropertyAdDto(propertyAdDto);
     if (result) {
       const validPropertyAdDto = <PropertyAdDto>propertyAdDto;
-      this.apiRequestService.postNewPropertyAd(validPropertyAdDto).subscribe({
-        next: () => {},
-        error: (err) => {
-          console.error(err);
-        },
-        complete: () => {
-          this.navigateToMain();
-        },
-      });
+
+      this.sessionService.user$
+        .pipe(
+          switchMap((user) => {
+            if (user == null) throw new Error('User needs to be logged in.');
+
+            return this.apiRequestService.postNewPropertyAd(
+              validPropertyAdDto,
+              user
+            );
+          })
+        )
+        .subscribe({
+          next: () => {},
+          error: (err) => {
+            console.error(err);
+          },
+          complete: () => {
+            this.navigateToMain();
+          },
+        });
     }
   }
 

@@ -1,0 +1,5 @@
+<app-ad-previewer
+  *ngIf="mode === Mode.PREVIEW; else showcase"
+  [propertyDto]="propertyAdDto"
+></app-ad-previewer>
+<ng-template #showcase> </ng-template>

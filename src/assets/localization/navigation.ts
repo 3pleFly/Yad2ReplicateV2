@@ -16,6 +16,7 @@ export const navigation = {
   header_forrent: "השכרה",
   header_forroommates: "דירות שותפים",
   header_commercialRealestate: "נדל״ן מסחרי",
+  header_hamburger_title: "תפריט",
 
   chat: "צ׳אט",
   myAlerts: "התראות שלי",
@@ -49,5 +50,7 @@ export const navigation = {
   src_user: './assets/pictures/navigation/user.png',
 
 
+  btn_nextPage: "הבא",
+  btn_prevPage: "הקודם"
 
 }

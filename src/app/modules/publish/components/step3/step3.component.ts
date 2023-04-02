@@ -53,8 +53,6 @@ export class Step3Component extends BaseStep implements OnInit {
 
   submit() {
     if (this.form.valid) {
-      console.log({ ...this.form.getRawValue() });
-
       this.setFormData({ ...this.form.getRawValue() });
       this.nextStep();
     }

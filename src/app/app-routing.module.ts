@@ -1,6 +1,6 @@
-import { Inject, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './core/guards/auth.guard';
+import { authGuard } from './core/guards/auth.guard';
 import { SessionService } from './core/services/session.service';
 
 const routes: Routes = [
@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: 'publish',
     loadChildren: () => import('./modules/publish/publish.module'),
-    canActivate: [AuthGuard],
+    canActivate: [authGuard],
   },
   { path: 'auth', loadChildren: () => import('./modules/auth/auth.module') },
   { path: '**', redirectTo: 'realestate-forsale' },

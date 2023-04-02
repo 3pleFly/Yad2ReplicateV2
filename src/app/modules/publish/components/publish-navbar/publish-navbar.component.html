@@ -5,7 +5,7 @@
   </section>
   <section class="left">
     <div class="user">
-      <ng-container *ngIf="user">
+      <ng-container *ngIf="user$ | async as user">
         <img [src]="activeUser" alt="my account" />
         <span>{{ user.userName }}</span>
       </ng-container>

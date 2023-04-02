@@ -11,6 +11,7 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
+          "displayBlock": true,
           "skipTests": true
         },
         "@schematics/angular:service": {
