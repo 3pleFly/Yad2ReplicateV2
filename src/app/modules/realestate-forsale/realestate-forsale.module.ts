@@ -6,7 +6,6 @@ import { RealestateForsaleComponent } from './components/realestate-forsale/real
 import { NavbarComponent } from 'src/app/modules/realestate-forsale/components/navbar/navbar.component';
 import { SearchBoxComponent } from 'src/app/modules/realestate-forsale/components/search-box/search-box.component';
 import { CheckmarkControlComponent } from 'src/app/shared/components/checkmark-control/checkmark-control.component';
-import { SelectDropdownCheckboxComponent } from 'src/app/shared/components/select-dropdown-checkbox/select-dropdown-checkbox.component';
 import RangedSelectComponent from 'src/app/shared/components/ranged-select/ranged-select.component';
 import { CommonInputComponent } from 'src/app/shared/components/common-input/common-input.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -29,7 +28,6 @@ import { IconComponent } from "../../shared/components/icon/icon.component";
     imports: [
         CommonModule,
         RealestateForsaleRoutingModule,
-        SelectDropdownCheckboxComponent,
         CheckmarkControlComponent,
         RangedSelectComponent,
         CommonInputComponent,
