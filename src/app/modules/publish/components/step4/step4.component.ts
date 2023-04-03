@@ -4,10 +4,16 @@ import { BaseStep } from '../../directives/base-step.directive';
 import { StepData } from '../../models/step-data.interface';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LocalisationService } from 'src/app/core/services/localisation.service';
-import { Checkmark } from 'src/app/shared/models/checkmark.interface';
+import {
+  Checkmark,
+  CheckmarkState,
+} from 'src/app/shared/models/checkmark.interface';
 import { RealestateFormService } from '../../services/realestate-form-data.service';
 import { ValidationMessages } from 'src/app/shared/models/validation-messages.interface';
-import { convertNumberCommaFormatToNumber } from 'src/app/core/helpers/functions.helpers';
+import {
+  convertCheckmarkStateToBoolean,
+  convertNumberCommaFormatToNumber,
+} from 'src/app/core/helpers/functions.helpers';
 
 @Component({
   selector: 'app-step4',
@@ -96,13 +102,15 @@ export class Step4Component extends BaseStep {
     });
   }
 
-  onMarkIsImmediateEntryDate(mark: boolean) {
-    this.setEntryDateAndStatus(mark);
+  onMarkIsImmediateEntryDate(checkmarkState: CheckmarkState) {
+    const bool = convertCheckmarkStateToBoolean(checkmarkState);
+    this.setEntryDateAndStatus(bool);
     this.clearIsFlexibleEntryDateInput();
   }
 
-  onMarkIsFlexibleEntryDate(mark: boolean) {
-    this.setEntryDateAndStatus(mark);
+  onMarkIsFlexibleEntryDate(checkmarkState: CheckmarkState) {
+    const bool = convertCheckmarkStateToBoolean(checkmarkState);
+    this.setEntryDateAndStatus(bool);
     this.clearIsImmediateEntryDate();
   }
 

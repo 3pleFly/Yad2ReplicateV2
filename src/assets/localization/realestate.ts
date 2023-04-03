@@ -1,9 +1,25 @@
-export const realestate  = {
-  preview_label_rooms: "חדרים",
-  preview_label_floors: "קומה",
-  preview_label_totalSquareMeter: "מ״ר",
-  preview_label_lastUpdated : "עודכן היום",
-  preview_label_openInNewTab : "פתיחה בטאב חדש",
-  preview_label_clickForDetails : "לחצו לפרטים",
+export const realestate = {
+  preview_label_rooms: 'חדרים',
+  preview_label_floors: 'קומה',
+  preview_label_totalSquareMeter: 'מ״ר',
+  preview_label_lastUpdated: 'עודכן היום',
+  preview_label_openInNewTab: 'פתיחה בטאב חדש',
+  preview_label_clickForDetails: 'לחצו לפרטים',
 
-}
+  showcase_btn_showPhoneNumber: 'הצגת מספר טלפון',
+  showcase_label_map: 'מפה',
+  showcase_label_description: 'תיאור הנכס',
+  showcase_label_newProjectsInArea: 'פרוייקטים חדשים באזור',
+  showcase_label_propertyState: 'מצב הנכס',
+  showcase_label_floors: 'קומות בבניין',
+  showcase_label_parking: 'חניות',
+  showcase_label_entryDate: 'תאריך כניסה',
+  showcase_label_squareMeterGarden: 'מ׳׳ר גינה',
+  showcase_label_squareMeter: 'מ׳׳ר בנוי',
+  showcase_label_flexibleEntryDate: 'כניסה גמישה',
+  showcase_label_immediateEntryDate: 'כניסה מיידית',
+  showcase_label_balconies: 'מרפסות',
+  showcase_label_features: 'מה יש בנכס?',
+  showcase_label_adId: "מספר מודעה:",
+  showcase_label_foundMistake :"מצאתי טעות",
+};

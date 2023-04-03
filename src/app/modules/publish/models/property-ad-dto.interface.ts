@@ -7,7 +7,7 @@ export class PropertyAdDto {
 
   propertyTypeId!: number;
   propertyStateId!: number;
-  propertyFeatureIds!: number[];
+  propertyFeaturesIds!: number[];
   city!: string;
   street!: string;
   houseNum!: string;

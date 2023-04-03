@@ -2,6 +2,8 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  position: relative;
+  z-index: 3;
 }
 
 .container {
@@ -30,6 +32,10 @@
   --input-height: 40px;
   --cursor: pointer;
   display: block;
+}
+
+app-common-input {
+  --input-height: 40px;
 }
 
 .rooms app-ranged-select {

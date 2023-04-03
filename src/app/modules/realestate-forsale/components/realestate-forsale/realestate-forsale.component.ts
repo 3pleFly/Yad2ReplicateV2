@@ -4,8 +4,10 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { defaultIfEmpty, map, startWith, tap } from 'rxjs';
-import { AdService } from '../../services/ad.service';
+import { map, tap } from 'rxjs';
+import { ApiRequestService } from 'src/app/core/services/api-request.service';
+import { SessionService } from 'src/app/core/services/session.service';
+import { RealestateDataService } from '../../services/realestate-data.service';
 
 @Component({
   selector: 'app-realestate-forsale',
@@ -14,11 +16,12 @@ import { AdService } from '../../services/ad.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RealestateForsaleComponent implements OnInit {
-  adService = inject(AdService);
+  private _apiRequestService = inject(ApiRequestService);
+  private _realestateDataService = inject(RealestateDataService);
 
-  propertyAdDtos$ = this.adService.getPropertyAds();
+  propertyAdDtos$ = this._apiRequestService.getPropertyAdDtos();
 
-  maxAdPages$ = this.adService.getCountPropertyAds().pipe(
+  maxAdPages$ = this._apiRequestService.getCountPropertyAds().pipe(
     map((count) => Math.floor(count / 10) + 1),
     tap((v) => console.log(v))
   );
@@ -26,9 +29,10 @@ export class RealestateForsaleComponent implements OnInit {
   ngOnInit(): void {}
 
   onPageChange(page: number) {
-    console.log('?');
-
     const offset = (page - 1) * 10;
-    this.propertyAdDtos$ = this.adService.getPropertyAds(10, offset);
+    this.propertyAdDtos$ = this._apiRequestService.getPropertyAdDtos(
+      10,
+      offset
+    );
   }
 }

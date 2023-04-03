@@ -1,3 +1,7 @@
+:host {
+  pointer-events: var(--pointer-events);
+}
+
 .input {
   cursor: pointer;
   -webkit-appearance: none;

@@ -19,12 +19,14 @@ export class ApiRequestService {
   private _handler = inject(HttpBackend);
   private _noInterceptorsHttpClient = new HttpClient(this._handler);
 
-  getPropertyDtos(limit = 10, offset = 0) {
+  getPropertyAdDtos(limit = 10, offset = 0): Observable<PropertyAdDto[]> {
     const params = new HttpParams().set('limit', limit).set('offset', offset);
 
-    return this._http.get<Yad2Response>(`${Yad2APIURL}/properties`, {
-      params: params,
-    });
+    return this._http
+      .get<Yad2Response>(`${Yad2APIURL}/properties`, {
+        params: params,
+      })
+      .pipe(map((y2r) => <PropertyAdDto[]>y2r.data));
   }
 
   getCities(cityQuery: string): Observable<string[]> {

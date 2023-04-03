@@ -26,11 +26,11 @@ export class RealestateDataService {
   ) {}
   local = this.localService.publish;
   images = this.localService.images.publish;
-  propertyFeatureImages = this.localService.images.propertyFeatures;
-  currentStep = 1;
+  propertyFeatureImages = this.localService.propertyFeaturesImgSrcs;
+  currentStep = 0;
 
   initializeRealestateSteps() {
-    this.currentStep = 1;
+    this.currentStep = 0;
   }
 
   nextStep() {
@@ -101,22 +101,7 @@ export class RealestateDataService {
   propertyFeatures!: Yad2Resource[];
 
   get propertyFeatureImgSrcs(): PropertyFeatures {
-    return {
-      AC: this.propertyFeatureImages.ac,
-      Accessability: this.propertyFeatureImages.accessability,
-      WindowBars: this.propertyFeatureImages.windowBars,
-      WaterHeating: this.propertyFeatureImages.waterHeating,
-      Elevator: this.propertyFeatureImages.elevator,
-      Roommates: this.propertyFeatureImages.roommates,
-      Furniture: this.propertyFeatureImages.furnished,
-      Unit: this.propertyFeatureImages.unit,
-      KosherKitchen: this.propertyFeatureImages.kosherKitchen,
-      Pets: this.propertyFeatureImages.pets,
-      Renovated: this.propertyFeatureImages.renovated,
-      Mamad: this.propertyFeatureImages.mamad,
-      TadiranAC: this.propertyFeatureImages.tadiranAc,
-      Storage: this.propertyFeatureImages.storage,
-    };
+    return this.localService.propertyFeaturesImgSrcs;
   }
 
   get step7Trials() {

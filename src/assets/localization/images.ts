@@ -46,22 +46,6 @@ export const images = {
     uploadSvg: 'assets/pictures/publish/media_uploads.svg'
   },
   activeUser: '/assets/pictures/main/active_user.png',
-  propertyFeatures: {
-    ac: 'assets/pictures/property-features/ac.png',
-    accessability: 'assets/pictures/property-features/disabled-access.png',
-    elevator: 'assets/pictures/property-features/elevator.png',
-    furnished: 'assets/pictures/property-features/furniture.png',
-    kosherKitchen: 'assets/pictures/property-features/kosher-kitchen.png',
-    mamad: 'assets/pictures/property-features/mamad.png',
-    pets: 'assets/pictures/property-features/pets.png',
-    renovated: 'assets/pictures/property-features/renovated.png',
-    roommates: 'assets/pictures/property-features/roommates.png',
-    storage: 'assets/pictures/property-features/storage.png',
-    tadiranAc: 'assets/pictures/property-features/tadiran-ac.png',
-    unit: 'assets/pictures/property-features/unit.png',
-    waterHeating: 'assets/pictures/property-features/water-heater.png',
-    windowBars: 'assets/pictures/property-features/window-bars.png',
-  },
   outsource: {
     telaviv: 'assets/pictures/outsource/tlv_logo.svg'
   },
@@ -75,5 +59,12 @@ export const images = {
   },
   navigation: {
     user: 'assets/pictures/navigation/user.png',
-  }
+  },
+  shareLinks: {
+    link: '',
+    whatsapp: '',
+    print: '',
+    newTab: '',
+    email: ''
+  },
 };

@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { LocalisationService } from 'src/app/core/services/localisation.service';
 import { RangedSelect } from 'src/app/shared/models/ranged-select.interface';
 import { SearchboxService } from '../../services/searchbox.service';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { RealestateDataService } from '../../services/realestate-data.service';
 
 @Component({
   selector: 'app-search-box',
@@ -14,13 +15,12 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchBoxComponent {
-  constructor(
-    private localService: LocalisationService,
-    private searchboxService: SearchboxService
-  ) {}
+  private _localService = inject(LocalisationService);
+  private _realestateDataService = inject(RealestateDataService);
 
-  local = this.localService.searchbox;
-  checkmarkList = this.searchboxService.checkmarkList;
+  local = this._localService.searchbox;
+  checkmarkList$ = this._realestateDataService.getPropertyTypesCheckmarkList();
+
   roomsDropdown = false;
   roomsRange: RangedSelect = { from: 0, to: 'all' };
   roomsPlaceholder = this.local.placeholder_rooms;

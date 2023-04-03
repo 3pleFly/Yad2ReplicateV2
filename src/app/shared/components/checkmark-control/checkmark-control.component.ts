@@ -3,6 +3,7 @@ import {
   Component,
   ContentChild,
   EventEmitter,
+  HostListener,
   Input,
   OnInit,
   Output,
@@ -28,7 +29,6 @@ import { ValidationErrorComponent } from '../validation-error/validation-error.c
           'indeterminate-icon': checkbox.indeterminate
         }"
         [checked]="checkmark.state === 'checked'"
-        (click)="mark(checkbox.checked, $event)"
         type="checkbox"
         #checkbox
       />
@@ -61,7 +61,7 @@ export class CheckmarkControlComponent implements OnInit {
   @Input() control: FormControl = new FormControl();
   @Input() validationMessages: ValidationMessages = {};
 
-  @Output() marked = new EventEmitter<boolean>();
+  @Output() checkmarkChange = new EventEmitter<Checkmark>();
 
   @ContentChild('label') label!: TemplateRef<any>;
   @ContentChild('caption') caption!: TemplateRef<any>;
@@ -69,7 +69,16 @@ export class CheckmarkControlComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  mark(checked: boolean, e: Event) {
-    this.marked.emit(checked);
+  @HostListener('click', ['$event'])
+  mark(e: Event) {
+    e.stopPropagation();
+    e.preventDefault();
+    console.log('inside control', this.checkmark.state);
+
+    const state = this.checkmark.state === 'checked' ? 'unchecked' : 'checked';
+    const newCheckmark = { ...this.checkmark, state } as Checkmark;
+    this.checkmark = newCheckmark;
+
+    this.checkmarkChange.emit(newCheckmark);
   }
 }

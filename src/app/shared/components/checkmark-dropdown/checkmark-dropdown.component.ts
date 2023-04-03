@@ -44,24 +44,28 @@ export class CheckmarkDropdownComponent {
   }
 
   toggleAllCheckmarks() {
+    console.log('toggle all');
+
     let newCheckmarks: Checkmark[];
-    let newTitle: Checkmark;
+    let newCheckmarkTitle: Checkmark;
     const state = this.getCurrentMarkState(this.checkmarks);
 
     switch (state) {
       case 'unchecked':
       case 'indeterminate':
         newCheckmarks = this.markAll('checked');
-        newTitle = { ...this.title, state: 'checked' };
+        newCheckmarkTitle = { ...this.title, state: 'checked' };
         break;
 
       case 'checked':
         newCheckmarks = this.markAll('unchecked');
-        newTitle = { ...this.title, state: 'unchecked' };
+        newCheckmarkTitle = { ...this.title, state: 'unchecked' };
         break;
     }
-    this.titleChange.emit(newTitle);
+    this.titleChange.emit(newCheckmarkTitle);
     this.checkmarksChange.emit(newCheckmarks);
+
+    this.checkmarks = newCheckmarks;
   }
 
   countChecked(): number {
@@ -99,13 +103,7 @@ export class CheckmarkDropdownComponent {
   }
 
   markCheckbox(index: number) {
-    console.log('mark checkbox');
-
-    const checkmark = this.checkmarks[index];
-    const state: CheckmarkState =
-      checkmark.state === 'checked' ? 'unchecked' : 'checked';
-
-    this.checkmarks[index] = { ...checkmark, state: state };
+    console.log('inside dropdown checkmark');
     this.markTitle();
   }
 }

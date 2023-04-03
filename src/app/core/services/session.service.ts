@@ -8,6 +8,7 @@ import {
   ReplaySubject,
   shareReplay,
   switchMap,
+  take,
   tap,
 } from 'rxjs';
 import { Yad2APIURL } from 'src/assets/api/api';
@@ -35,6 +36,8 @@ export class SessionService {
   private _propertyStates$!: Observable<Yad2Resource[]>;
   private _propertyType$!: Observable<Yad2Resource[]>;
   private _propertyFeatures$!: Observable<Yad2Resource[]>;
+
+
   user$ = this._user.asObservable();
 
   getPropertyTypes() {
@@ -59,7 +62,7 @@ export class SessionService {
     if (!this._propertyFeatures$) {
       this._propertyFeatures$ = this._apiRequestService
         .getPropertyFeatures()
-        .pipe(shareReplay(1));
+        .pipe(shareReplay(1), take(1));
     }
     return this._propertyFeatures$;
   }

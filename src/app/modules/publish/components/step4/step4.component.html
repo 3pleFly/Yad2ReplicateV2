@@ -66,12 +66,12 @@
           <app-checkmark-control
             [checkmark]="immediateEntryCheckmark"
             [control]="form.controls.isImmediateEntryDate"
-            (marked)="onMarkIsImmediateEntryDate($event)"
+            (checkmarkChange)="onMarkIsImmediateEntryDate($event.state)"
           ></app-checkmark-control>
           <app-checkmark-control
             [checkmark]="flexibleEntryCheckmark"
             [control]="form.controls.isFlexibleEntryDate"
-            (marked)="onMarkIsFlexibleEntryDate($event)"
+            (checkmarkChange)="onMarkIsFlexibleEntryDate($event.state)"
           ></app-checkmark-control>
         </div>
       </li>

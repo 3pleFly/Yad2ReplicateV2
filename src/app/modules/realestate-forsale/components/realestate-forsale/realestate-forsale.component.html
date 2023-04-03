@@ -10,5 +10,8 @@
     </ul>
     <app-recently-sold-box></app-recently-sold-box>
   </div>
-  <app-pager [maxPageIndex]="(maxAdPages$ | async) ?? 1" (pageChange)="onPageChange($event)"></app-pager>
+  <app-pager
+    [maxPageIndex]="1805"
+    (pageChange)="onPageChange($event)"
+  ></app-pager>
 </main>

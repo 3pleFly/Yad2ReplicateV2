@@ -78,8 +78,8 @@ export class Step6Component extends BaseStep {
     });
   }
 
-  onMarkUseVirtualNumber(marked: boolean) {
-    if (marked) {
+  onMarkUseVirtualNumber(marked: string) {
+    if ('checked') {
       this.form.controls.allowCallsOnWeekends.enable();
     } else {
       this.form.controls.allowCallsOnWeekends.disable();

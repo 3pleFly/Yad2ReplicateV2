@@ -53,7 +53,7 @@
       <app-checkmark-control
         [checkmark]="useVirtualNumberCheckmark"
         [control]="form.controls.useVirtualNumber"
-        (marked)="onMarkUseVirtualNumber($event)"
+        (checkmarkChange)="onMarkUseVirtualNumber($event.state)"
       >
         <ng-template #caption>
           <div class="checkmark_caption">

@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.grayed {
+  opacity: 0.2;
+}
+
+img {
+  width: var(--img-width);
+}

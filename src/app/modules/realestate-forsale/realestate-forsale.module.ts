@@ -10,23 +10,22 @@ import { SelectDropdownCheckboxComponent } from 'src/app/shared/components/selec
 import RangedSelectComponent from 'src/app/shared/components/ranged-select/ranged-select.component';
 import { CommonInputComponent } from 'src/app/shared/components/common-input/common-input.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { AdPreviewerComponent } from './components/ad-previewer/ad-previewer.component';
+import { AdContainerComponent as AdContainerComponent } from './components/ad-previewer/ad-container.component';
 import { PagerComponent } from './components/pager/pager.component';
-import { AdService } from './services/ad.service';
-import { AdContainerComponent } from './components/ad-container/ad-container.component';
 import { RecentlySoldBoxComponent } from './components/recently-sold-box/recently-sold-box.component';
 import { Yad2TranslationPipe } from "../../shared/pipes/translate.pipe";
+import { RealestateDataService } from './services/realestate-data.service';
+import { IconComponent } from "../../shared/components/icon/icon.component";
 @NgModule({
     declarations: [
         RealestateForsaleComponent,
         SearchBoxComponent,
-        AdPreviewerComponent,
+        AdContainerComponent,
         PagerComponent,
         NavbarComponent,
-        AdContainerComponent,
         RecentlySoldBoxComponent,
     ],
-    providers: [AdService],
+    providers: [RealestateDataService],
     imports: [
         CommonModule,
         RealestateForsaleRoutingModule,
@@ -35,7 +34,8 @@ import { Yad2TranslationPipe } from "../../shared/pipes/translate.pipe";
         RangedSelectComponent,
         CommonInputComponent,
         FontAwesomeModule,
-        Yad2TranslationPipe
+        Yad2TranslationPipe,
+        IconComponent
     ]
 })
 export default class RealestateForsaleModule {}

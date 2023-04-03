@@ -21,7 +21,7 @@
       <app-select-dropdown-checkbox
         [labelName]="local.label_propertyType"
         [placeholder]="local.placeholder_propertyType"
-        [checkmarkList]="checkmarkList"
+        [checkmarkList]="(checkmarkList$ | async) ?? []"
       ></app-select-dropdown-checkbox>
     </li>
     <li class="rooms">
