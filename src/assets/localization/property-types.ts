@@ -24,7 +24,9 @@ export const propertyTypes: TranslationType = {
   PurchasingGroup: 'קבוצת רכישה/זכות לנכס',
   General: 'כללי',
 
+  select: "בחירה",
   select_apartments: 'דירות',
   select_houses: 'בתים',
   select_moreTypes: 'סוגים נוספים',
+  select_allTypes: 'כל סוגי הנכסים',
 };

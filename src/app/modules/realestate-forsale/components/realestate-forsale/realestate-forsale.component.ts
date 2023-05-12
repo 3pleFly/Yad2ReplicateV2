@@ -4,7 +4,7 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { map, tap } from 'rxjs';
+import { delay, map, tap } from 'rxjs';
 import { ApiRequestService } from 'src/app/core/services/api-request.service';
 import { SessionService } from 'src/app/core/services/session.service';
 import { RealestateDataService } from '../../services/realestate-data.service';
@@ -19,7 +19,9 @@ export class RealestateForsaleComponent implements OnInit {
   private _apiRequestService = inject(ApiRequestService);
   private _realestateDataService = inject(RealestateDataService);
 
-  propertyAdDtos$ = this._apiRequestService.getPropertyAdDtos();
+  propertyAdDtos$ = this._apiRequestService
+    .getPropertyAdDtos()
+    .pipe(delay(1000));
 
   maxAdPages$ = this._apiRequestService.getCountPropertyAds().pipe(
     map((count) => Math.floor(count / 10) + 1),

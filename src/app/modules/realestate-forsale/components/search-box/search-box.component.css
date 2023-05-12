@@ -20,6 +20,7 @@
   margin: 0;
   padding: 0;
   padding-top: 30px;
+  font-size: 14px;
 }
 
 .inputs li {
@@ -139,4 +140,12 @@ app-common-input {
 .notification fa-icon {
   color: var(--yad2Orange);
   transform: rotate(20deg);
+}
+
+.property_types {
+  cursor: pointer;
+}
+
+.property_types app-checkbox-list-dropdown {
+  position: absolute;
 }

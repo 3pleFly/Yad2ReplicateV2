@@ -20,17 +20,19 @@ import { ValidationErrorComponent } from '../validation-error/validation-error.c
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, ValidationErrorComponent],
   template: `
-    <label [ngClass]="{ disabled: disabled }">
+    <label
+      [ngClass]="{ disabled: disabled }"
+      (click)="mark(checkbox.checked, $event)"
+    >
       <input
+        #checkbox
         [formControl]="control"
         [indeterminate]="checkmark.state === 'indeterminate'"
         [ngClass]="{
           input: true,
           'indeterminate-icon': checkbox.indeterminate
         }"
-        [checked]="checkmark.state === 'checked'"
         type="checkbox"
-        #checkbox
       />
       <ng-container
         [ngTemplateOutlet]="label ? label : defaultLabel"
@@ -69,13 +71,10 @@ export class CheckmarkControlComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  @HostListener('click', ['$event'])
-  mark(e: Event) {
-    e.stopPropagation();
+  mark(checked: boolean, e: Event) {
     e.preventDefault();
-    console.log('inside control', this.checkmark.state);
-
-    const state = this.checkmark.state === 'checked' ? 'unchecked' : 'checked';
+    this.control.setValue(!checked);
+    const state = this.control.value === true ? 'checked' : 'unchecked';
     const newCheckmark = { ...this.checkmark, state } as Checkmark;
     this.checkmark = newCheckmark;
 

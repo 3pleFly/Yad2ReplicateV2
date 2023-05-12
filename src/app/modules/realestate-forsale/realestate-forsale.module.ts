@@ -15,6 +15,8 @@ import { RecentlySoldBoxComponent } from './components/recently-sold-box/recentl
 import { Yad2TranslationPipe } from "../../shared/pipes/translate.pipe";
 import { RealestateDataService } from './services/realestate-data.service';
 import { IconComponent } from "../../shared/components/icon/icon.component";
+import { LoaderComponent } from 'src/app/shared/components/loader/loader.component';
+import { CheckboxListDropdownComponent } from 'src/app/shared/components/checkbox-list-dropdown/checkbox-list-dropdown.component';
 @NgModule({
     declarations: [
         RealestateForsaleComponent,
@@ -33,7 +35,9 @@ import { IconComponent } from "../../shared/components/icon/icon.component";
         CommonInputComponent,
         FontAwesomeModule,
         Yad2TranslationPipe,
-        IconComponent
+        IconComponent,
+        LoaderComponent,
+        CheckboxListDropdownComponent
     ]
 })
 export default class RealestateForsaleModule {}

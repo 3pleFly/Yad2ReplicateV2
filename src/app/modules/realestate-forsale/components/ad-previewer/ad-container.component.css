@@ -65,6 +65,7 @@
 } */
 
 .grid {
+  position: relative;
   cursor: pointer;
   background-color: #fdf9c5;
   display: grid;
@@ -327,4 +328,10 @@
 .mistake {
   cursor: pointer;
   font-weight: 500;
+}
+
+.spinner {
+  position: absolute;
+  left: 45%;
+  opacity: 0.5;
 }

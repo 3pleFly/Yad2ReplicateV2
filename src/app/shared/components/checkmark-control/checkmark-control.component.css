@@ -42,7 +42,7 @@
 
 .input:disabled {
   cursor: not-allowed;
-  opacity: .3;
+  opacity: 0.3;
 }
 
 .indeterminate-icon::before {
@@ -68,6 +68,9 @@ label {
   background-color: var(--label-background);
   padding: var(--label-padding);
   gap: 5px;
+  height: var(--height);
+  width: var(--width);
+  padding: var(--padding);
 }
 
 label > span {

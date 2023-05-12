@@ -18,12 +18,17 @@
       ></app-common-input>
     </li>
     <li>
-
-
-
-
-
-
+      <div class="property_types">
+        <app-common-input
+          [readonly]="true"
+          [placeholder]="local.placeholder_propertyType"
+          [labelName]="local.label_propertyType"
+          (click)="togglePropertyTypesDropdown()"
+        ></app-common-input>
+        <app-checkbox-list-dropdown
+          *ngIf="propertyTypesDropdown"
+        ></app-checkbox-list-dropdown>
+      </div>
     </li>
     <li class="rooms">
       <div (click)="toggleRoomsDropdown()">

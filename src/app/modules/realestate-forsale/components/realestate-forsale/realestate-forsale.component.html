@@ -3,10 +3,12 @@
   <app-search-box></app-search-box>
   <div class="two-col-grid">
     <ul class="ads">
-      <app-ad-container
-        *ngFor="let propertyAdDto of propertyAdDtos$ | async"
-        [propertyAdDto]="propertyAdDto"
-      ></app-ad-container>
+      <ng-container *ngIf="propertyAdDtos$ | async as propertyDtos; else spinner">
+        <app-ad-container
+          *ngFor="let propertyAdDto of propertyDtos"
+          [propertyAdDto]="propertyAdDto"
+        ></app-ad-container>
+      </ng-container>
     </ul>
     <app-recently-sold-box></app-recently-sold-box>
   </div>
@@ -15,3 +17,10 @@
     (pageChange)="onPageChange($event)"
   ></app-pager>
 </main>
+
+<ng-template #spinner>
+  <app-ad-container></app-ad-container>
+  <app-ad-container></app-ad-container>
+  <app-ad-container></app-ad-container>
+  <app-ad-container></app-ad-container>
+</ng-template>

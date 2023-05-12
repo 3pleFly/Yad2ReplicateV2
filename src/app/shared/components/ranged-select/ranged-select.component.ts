@@ -7,7 +7,18 @@ import { LocalisationService } from 'src/app/core/services/localisation.service'
   selector: 'app-ranged-select',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './ranged-select.component.html',
+  template: `
+    <select class="select" (change)="selectFrom($event)">
+      <option hidden disabled selected>{{ local.placeholder_from }}</option>
+      <option value="all">{{ local.all }}</option>
+      <option *ngFor="let num of numbers">{{ num }}</option>
+    </select>
+    <select class="select" (change)="selectTo($event)">
+      <option hidden disabled selected>{{ local.placeholder_to }}</option>
+      <option value="all">{{ local.all }}</option>
+      <option *ngFor="let num of numbers">{{ num }}</option>
+    </select>
+  `,
   styleUrls: ['./ranged-select.component.css'],
 })
 export default class RangedSelectComponent implements OnInit {

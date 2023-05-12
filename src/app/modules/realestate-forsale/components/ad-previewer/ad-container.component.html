@@ -8,140 +8,154 @@
     [ngClass]="{ grid: true, 'show-mode': mode === ComponentView.SHOWCASE }"
     (click)="switchMode()"
   >
-    <div class="img-container">
-      <img [src]="imgPlaceholder" />
-    </div>
-    <section class="address_col">
-      <span class="address">
-        <div class="title">
-          {{ propertyAdDto.street }} {{ propertyAdDto.houseNum }}
-        </div>
-        <div class="label subtitle">
-          {{ propertyType$ | async }}, {{ propertyAdDto.city }}
-        </div>
-      </span>
-    </section>
-    <section class="middle_col">
-      <span class="rooms">
-        <div>
-          {{ propertyAdDto.rooms }}
-        </div>
-        <div class="label">
-          {{ local.preview_label_rooms }}
-        </div>
-      </span>
-      <span class="floors">
-        <div>
-          {{ propertyAdDto.floor }}
-        </div>
-        <div class="label">
-          {{ local.preview_label_floors }}
-        </div>
-      </span>
-      <span class="total_square_meter">
-        <div>
-          {{ propertyAdDto.totalSquareMeter }}
-        </div>
-        <div class="label">
-          {{ local.preview_label_totalSquareMeter }}
-        </div>
-      </span>
-    </section>
-    <section class="left_col">
-      <button *ngIf="mode === ComponentView.PREVIEW" class="new_tab_btn">
-        <span>{{ local.preview_label_openInNewTab }}</span>
-        <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
-      </button>
-      <div class="price">
-        {{ propertyAdDto.price | currency : "ILS" : "symbol" : "1.0-0" }}
+    <ng-container *ngIf="propertyAdDto; else spinner">
+      <div class="img-container">
+        <img [src]="imgPlaceholder" />
       </div>
-      <div class="update_container">
-        <span class="last_update">
-          {{ local.preview_label_lastUpdated }}
+      <section class="address_col">
+        <span class="address">
+          <div class="title">
+            {{ propertyAdDto.street }} {{ propertyAdDto.houseNum }}
+          </div>
+          <div class="label subtitle">
+            {{ propertyType$ | async }}, {{ propertyAdDto.city }}
+          </div>
         </span>
-        <span class="click_for_details">
-          {{ local.preview_label_clickForDetails }}
+      </section>
+      <section class="middle_col">
+        <span class="rooms">
+          <div>
+            {{ propertyAdDto.rooms }}
+          </div>
+          <div class="label">
+            {{ local.preview_label_rooms }}
+          </div>
         </span>
-      </div>
-    </section>
-    <section *ngIf="mode === ComponentView.SHOWCASE" class="reveal_btn_section">
-      <button class="reveal_btn">
-        <span>
-          {{ local.showcase_btn_showPhoneNumber }}
+        <span class="floors">
+          <div>
+            {{ propertyAdDto.floor }}
+          </div>
+          <div class="label">
+            {{ local.preview_label_floors }}
+          </div>
         </span>
-      </button>
-    </section>
+        <span class="total_square_meter">
+          <div>
+            {{ propertyAdDto.totalSquareMeter }}
+          </div>
+          <div class="label">
+            {{ local.preview_label_totalSquareMeter }}
+          </div>
+        </span>
+      </section>
+      <section class="left_col">
+        <button *ngIf="mode === ComponentView.PREVIEW" class="new_tab_btn">
+          <span>{{ local.preview_label_openInNewTab }}</span>
+          <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
+        </button>
+        <div class="price">
+          {{ propertyAdDto.price | currency : "ILS" : "symbol" : "1.0-0" }}
+        </div>
+        <div class="update_container">
+          <span class="last_update">
+            {{ local.preview_label_lastUpdated }}
+          </span>
+          <span class="click_for_details">
+            {{ local.preview_label_clickForDetails }}
+          </span>
+        </div>
+      </section>
+      <section
+        *ngIf="mode === ComponentView.SHOWCASE"
+        class="reveal_btn_section"
+      >
+        <button class="reveal_btn">
+          <span>
+            {{ local.showcase_btn_showPhoneNumber }}
+          </span>
+        </button>
+      </section>
+    </ng-container>
   </div>
-  <section *ngIf="mode === ComponentView.SHOWCASE" class="expanded">
-    <div class="other_projects">
-      <h5>{{ local.showcase_label_newProjectsInArea }}</h5>
-    </div>
-    <ul class="content">
-      <li class="description">
-        <h5>{{ local.showcase_label_description }}</h5>
-        <span>{{ propertyAdDto.description }}</span>
-      </li>
-      <li class="attributes">
-        <ul class="attribute-list">
-          <li>
-            <span>{{ local.showcase_label_propertyState }}</span>
-            <h5>
-              {{ propertyState$ | async }}
-            </h5>
-          </li>
-          <li>
-            <span>{{ local.showcase_label_entryDate }}</span>
-            <h5>{{ propertyAdDto.entryDate | date : "shortDate" }}</h5>
-          </li>
-          <li>
-            <span>{{ local.showcase_label_squareMeterGarden }}</span>
-            <h5>{{ propertyAdDto.gardenSquareMeter }}</h5>
-          </li>
-          <li>
-            <span>{{ local.showcase_label_squareMeter }}</span>
-            <h5>{{ propertyAdDto.squareMeter }}</h5>
-          </li>
-          <li>
-            <span>{{ local.showcase_label_balconies }}</span>
-            <h5>{{ propertyAdDto.balconies }}</h5>
-          </li>
-          <li>
-            <span>{{ local.showcase_label_parking }}</span>
-            <h5>{{ propertyAdDto.parkings }}</h5>
-          </li>
-        </ul>
-      </li>
-      <li class="features">
-        <h5>{{ local.showcase_label_features }}</h5>
-        <ul class="feature_icons">
-          <li *ngFor="let icon of propertyFeaturesIcons$ | async">
-            <app-icon [icon]="icon" [grayed]="isIconGrayed(icon.id)"></app-icon>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <div class="footer">
-      <ul class="share_links">
-        <li>
-          <fa-icon [icon]="faShareMenu.link"></fa-icon>
+  <ng-container *ngIf="propertyAdDto">
+    <section *ngIf="mode === ComponentView.SHOWCASE" class="expanded">
+      <div class="other_projects">
+        <h5>{{ local.showcase_label_newProjectsInArea }}</h5>
+      </div>
+      <ul class="content">
+        <li class="description">
+          <h5>{{ local.showcase_label_description }}</h5>
+          <span>{{ propertyAdDto.description }}</span>
         </li>
-        <li>
-          <fa-icon [icon]="faShareMenu.whatsapp"></fa-icon>
+        <li class="attributes">
+          <ul class="attribute-list">
+            <li>
+              <span>{{ local.showcase_label_propertyState }}</span>
+              <h5>
+                {{ propertyState$ | async }}
+              </h5>
+            </li>
+            <li>
+              <span>{{ local.showcase_label_entryDate }}</span>
+              <h5>{{ propertyAdDto.entryDate | date : "shortDate" }}</h5>
+            </li>
+            <li>
+              <span>{{ local.showcase_label_squareMeterGarden }}</span>
+              <h5>{{ propertyAdDto.gardenSquareMeter }}</h5>
+            </li>
+            <li>
+              <span>{{ local.showcase_label_squareMeter }}</span>
+              <h5>{{ propertyAdDto.squareMeter }}</h5>
+            </li>
+            <li>
+              <span>{{ local.showcase_label_balconies }}</span>
+              <h5>{{ propertyAdDto.balconies }}</h5>
+            </li>
+            <li>
+              <span>{{ local.showcase_label_parking }}</span>
+              <h5>{{ propertyAdDto.parkings }}</h5>
+            </li>
+          </ul>
         </li>
-        <li>
-          <fa-icon [icon]="faShareMenu.print"></fa-icon>
-        </li>
-        <li>
-          <fa-icon [icon]="faShareMenu.newTab"></fa-icon>
-        </li>
-        <li>
-          <fa-icon [icon]="faShareMenu.email"></fa-icon>
+        <li class="features">
+          <h5>{{ local.showcase_label_features }}</h5>
+          <ul class="feature_icons">
+            <li *ngFor="let icon of propertyFeaturesIcons$ | async">
+              <app-icon
+                [icon]="icon"
+                [grayed]="isIconGrayed(icon.id)"
+              ></app-icon>
+            </li>
+          </ul>
         </li>
       </ul>
-      <div class="left">
-        <span class="mistake">{{ local.showcase_label_foundMistake }}</span>
-        <span>{{ local.showcase_label_adId }} {{ propertyAdDto.id }}</span>
+      <div class="footer">
+        <ul class="share_links">
+          <li>
+            <fa-icon [icon]="faShareMenu.link"></fa-icon>
+          </li>
+          <li>
+            <fa-icon [icon]="faShareMenu.whatsapp"></fa-icon>
+          </li>
+          <li>
+            <fa-icon [icon]="faShareMenu.print"></fa-icon>
+          </li>
+          <li>
+            <fa-icon [icon]="faShareMenu.newTab"></fa-icon>
+          </li>
+          <li>
+            <fa-icon [icon]="faShareMenu.email"></fa-icon>
+          </li>
+        </ul>
+        <div class="left">
+          <span class="mistake">{{ local.showcase_label_foundMistake }}</span>
+          <span>{{ local.showcase_label_adId }} {{ propertyAdDto.id }}</span>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </ng-container>
 </div>
+
+<ng-template #spinner>
+  <app-loader class="spinner"></app-loader>
+</ng-template>

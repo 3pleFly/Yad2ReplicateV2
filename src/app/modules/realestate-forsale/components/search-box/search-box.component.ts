@@ -20,8 +20,8 @@ export class SearchBoxComponent {
 
   local = this._localService.searchbox;
   checkmarkList$ = this._realestateDataService.getPropertyTypesCheckmarkList();
-
   roomsDropdown = false;
+  propertyTypesDropdown = true;
   roomsRange: RangedSelect = { from: 0, to: 'all' };
   roomsPlaceholder = this.local.placeholder_rooms;
   faSearch = faSearch;
@@ -54,5 +54,9 @@ export class SearchBoxComponent {
 
   toggleRoomsDropdown() {
     this.roomsDropdown = !this.roomsDropdown;
+  }
+
+  togglePropertyTypesDropdown() {
+    this.propertyTypesDropdown = !this.propertyTypesDropdown;
   }
 }

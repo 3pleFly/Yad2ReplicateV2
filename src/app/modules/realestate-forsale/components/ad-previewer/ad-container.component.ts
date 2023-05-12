@@ -8,7 +8,6 @@ import {
 import { LocalisationService } from 'src/app/core/services/localisation.service';
 import { PropertyAdDto } from 'src/app/modules/publish/models/property-ad-dto.interface';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
-import { SessionService } from 'src/app/core/services/session.service';
 import { map, Observable, tap } from 'rxjs';
 import { yad2Translate } from 'src/app/core/helpers/functions.helpers';
 import { ComponentViewMode } from '../../models/view-model.enum';
@@ -54,19 +53,21 @@ export class AdContainerComponent implements OnInit {
   propertyState$!: Observable<string>;
 
   ngOnInit(): void {
-    this.propertyState$ = this._realestateDataService
-      .getPropertyStateById(this.propertyAdDto.propertyStateId)
-      .pipe(
-        yad2Translate(this._localService.y2Translatables),
-        map((y2r) => y2r.name)
-      );
+    if (this.propertyAdDto) {
+      this.propertyState$ = this._realestateDataService
+        .getPropertyStateById(this.propertyAdDto.propertyStateId)
+        .pipe(
+          yad2Translate(this._localService.y2Translatables),
+          map((y2r) => y2r.name)
+        );
 
-    this.propertyType$ = this._realestateDataService
-      .getPropertyTypeById(this.propertyAdDto.propertyTypeId)
-      .pipe(
-        yad2Translate(this._localService.y2Translatables),
-        map((y2r) => y2r?.name)
-      );
+      this.propertyType$ = this._realestateDataService
+        .getPropertyTypeById(this.propertyAdDto.propertyTypeId)
+        .pipe(
+          yad2Translate(this._localService.y2Translatables),
+          map((y2r) => y2r?.name)
+        );
+    }
   }
 
   switchMode() {
